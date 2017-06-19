@@ -25,7 +25,7 @@ reset_answers.
 % =====
 % Rules
 % ===== 
-logical_thinking(CF) :- 
+logical_thinking(RulesCF) :- 
   logic(CF1),
   rational(CF2),
   calculate_cf(CF1, CF2, 100, RulesCF).
@@ -44,7 +44,7 @@ degree(computing, RulesCF) :-
   calculate_cf(CF1, CF2, 100, RulesCF).
 
 degree(business, RulesCF) :-
-  logical_thinking(CF1)
+  logical_thinking(CF1),
   calculate_cf(CF1, CF2, 90, RulesCF).
 
 
