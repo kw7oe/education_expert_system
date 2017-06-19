@@ -556,6 +556,12 @@ genetic_engineering(Answer) :-
   ask(genetic_engineering, Answer, [yes, no]).
 
 % Business
+storytelling(Answer) :-
+  progress(storytelling, Answer).
+storytelling(Answer) :-
+  \+ progress(storytelling, _),
+  ask(storytelling, Answer, [yes, no]).
+
 detail_oriented(Answer) :-
   progress(detail_oriented, Answer).
 detail_oriented(Answer) :-
