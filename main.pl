@@ -365,6 +365,21 @@ answer(film) :-
 answer(perform) :-
   write('I prefer performing.').
 
+answer(strongly_disagree) :-
+  write('Strongly disagree.').
+
+answer(disagree) :-
+  write('disagree.').
+
+answer(neutral) :-
+  write('Neutral').
+
+answer(agree) :-
+  write('agree.').
+
+answer(strongly_agree) :-
+  write('Strongly agree.').
+
 % ==========================
 % Assign Answer to Questions
 % ==========================
