@@ -96,14 +96,14 @@ degree(computer_science) :-
   subject(computing, CF1, E),
   technology(CF2),
   calculate_cf([CF1, CF2], 90, CF),
-  write('Recommendation: Computer Science'), 
+  write('Recommendation: Computer Science '), 
   write('(cf '), write(CF), write(')'), nl,
   write(E).
 degree(computer_science) :-
   subject(computing, CF1, E),
   computer_systems(CF2),
   calculate_cf([CF1, CF2], 90, CF),
-  write('Recommendation: Computer Science'), 
+  write('Recommendation: Computer Science '), 
   write('(cf '), write(CF), write(')'), nl,
   write(E).
 degree(computer_science) :- 
@@ -111,7 +111,7 @@ degree(computer_science) :-
   computer_systems(CF2),
   technology(CF3),
   calculate_cf([CF1, CF2, CF3], 100, CF),
-  write('Recommendation: Computer Science'), 
+  write('Recommendation: Computer Science '), 
   write('(cf '), write(CF), write(')'), nl,
   write(E).
 
@@ -121,13 +121,13 @@ degree(information_technology) :-
   like_interact(yes),
   planning(yes),
   calculate_cf([CF1], 100, CF),
-  write('Recommendation: Information Technology'), 
+  write('Recommendation: Information Technology '), 
   write('(cf '), write(CF), write(')'), nl,
   write(E).
 degree(information_technology) :-
   subject(computing, CF1, E),
   calculate_cf([CF1], 90, CF),
-  write('Recommendation: Information Technology'), 
+  write('Recommendation: Information Technology '), 
   write('(cf '), write(CF), write(')'), nl,
   write(E).
 
@@ -137,21 +137,21 @@ degree(electrical_engineering) :-
   physics(yes),
   circuits(yes),
   calculate_cf([CF1], 90, CF),
-  write('Recommendation: Electrical Engineering'), 
+  write('Recommendation: Electrical Engineering '), 
   write('(cf '), write(CF), write(')'), nl,
   write(E).
 degree(mechanical_engineering) :-
   subject(engineering, CF1, E),
   physics(yes),
   calculate_cf([CF1], 90, CF),
-  write('Recommendation: Mechanical Engineering'), 
+  write('Recommendation: Mechanical Engineering '), 
   write('(cf '), write(CF), write(')'), nl,
   write(E).
 degree(chemical_engineering) :-
   subject(engineering, CF1, E),
   chemistry(yes),
   calculate_cf([CF1], 90, CF),
-  write('Recommendation: Chemical Engineering'), 
+  write('Recommendation: Chemical Engineering '), 
   write('(cf '), write(CF), write(')'), nl,
   write(E).
 
@@ -161,13 +161,13 @@ degree(biotechnology) :-
   biology(yes),
   genetic_engineering(yes),
   calculate_cf([CF1], 90, CF),
-  write('Recommendation: Computer Science'), 
+  write('Recommendation: Biotechnology '), 
   write('(cf '), write(CF), write(')'), nl,
   write(E).
-degree(pure_science, CF1, E) :- 
+degree(pure_science) :- 
   subject(science, CF1, E),
   calculate_cf([CF1], 90, CF),
-  write('Recommendation: Computer Science'), 
+  write('Recommendation: Pure Science '), 
   write('(cf '), write(CF), write(')'), nl,
   write(E).
 
@@ -175,8 +175,8 @@ degree(pure_science, CF1, E) :-
 % Uncertainty
 % ===========
 calculate_cf(CFList, CF, RulesCF) :-
-  min_in_list(CFList, Min),
-  RulesCF is div(Min * 20 * CF, 100).
+  min_in_list(CFList, Min), !,
+  RulesCF is div(Min * CF, 100).
 
 min_in_list([Min],Min). 
 min_in_list([H,K|T],M) :-
@@ -191,6 +191,8 @@ min_in_list([H,K|T],M) :-
 % =========
 
 % CF 100
+question(science) :-
+  write('Do you like Chemistry/Biology/Physics?'), nl.
 question(physics) :-
   write('Do you enjoy doing Physics?'), nl.
 question(maths) :-
@@ -326,6 +328,11 @@ physics(Answer) :-
 physics(Answer) :-
   \+ progress(physics, _),
   ask(physics, Answer, [yes, no]).
+biology(Answer) :-
+  progress(biology, Answer).
+biology(Answer) :-
+  \+ progress(biology, _),
+  ask(biology, Answer, [yes, no]).
 maths(Answer) :-
   progress(maths, Answer).
 maths(Answer) :-
@@ -484,5 +491,5 @@ ask_with_cf(Question, Answer, Choices) :-
   question(Question),
   answers(Choices, 1),
   read(Index),
-  asserta(progress(Question, Index)),
+  asserta(progress(Question, Index * 20)),
   Index = Answer.
