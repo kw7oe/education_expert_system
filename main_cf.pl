@@ -29,13 +29,24 @@ logical_thinking(RulesCF) :-
   rational(CF2),
   calculate_cf([CF1, CF2], 100, RulesCF).
 
+write_combinedCF(CF1, CF2, CombinedCF) :-
+  write('--------'), nl,
+  write('CF1: '), write(CF1), nl,
+  write('CF2: '), write(CF2), nl,
+  write('CombinedCF: '), write(CombinedCF), nl,
+  write('--------'), nl.
+
+write_combinedCF(CF1, CF2, CF3, CombinedCF) :-
+  write('--------'), nl,
+  write('CF1: '), write(CF1), nl,
+  write('CF2: '), write(CF2), nl,
+  write('CF3: '), write(CF3), nl,
+  write('CombinedCF: '), write(CombinedCF), nl,
+  write('--------'), nl.
+
 % =======
 % Subject
 % =======
-
-% ------------------
-% Subject: Computing
-% ------------------
 subject(computing, CombinedCF, E) :-
   logical_thinking(CF1),
   physics(no),
@@ -44,9 +55,8 @@ subject(computing, CombinedCF, E) :-
   work_with_numbers(yes),
   maths(yes),
   calculate_cf([CF1, CF2], 100, CombinedCF),
-  write('CF1: '), write(CF1),
-  write('CF2: '), write(CF2),
-  write('CombinedCF: '), write(CombinedCF),
+  % Debug
+  write_combinedCF(CF1, CF2, CombinedCF),
   E = 'You are a logical person and don\'t like physics. \c 
   However, you are good in maths and solving problems.'.
 
@@ -55,7 +65,8 @@ subject(computing, CombinedCF, E) :-
   work_with_numbers(no),
   maths(yes),
   calculate_cf([CF1], 85, CombinedCF),
-  write('CombinedCF: '), write(CombinedCF),
+  % Debug
+  write_combinedCF(CF1, 100, CombinedCF),
   E = 'You are good in maths and solving problems. \c
   You also prefer to work on a computer.'.
 
@@ -63,44 +74,11 @@ subject(computing, CombinedCF, E) :-
   computer_or_hands(computer),
   blogs(technology),
   calculate_cf([100], 70, CombinedCF),
-  write('CombinedCF: '), write(CombinedCF),
+  % Debug
+  write_combinedCF(100, 100, CombinedCF),
   E = 'You perfer working on a computer and like reading \c 
   blogs related to technology.'.
 
-% Degree: Computer Science
-degree(computer_science) :- 
-  subject(computing, CF1, E), !,
-  computer_systems(CF2),
-  technology(CF3),
-  write('CF1: '), write(CF1),
-  write('CF2: '), write(CF2),
-  write('CF3: '), write(CF3),
-  calculate_cf([CF1, CF2, CF3], 100, CF),
-  nl, write('Recommendation: Computer Science '), 
-  write('(cf '), write(CF), write(')'), nl,
-  write(E).
-
-% Degree: Information Technology
-degree(information_technology) :- 
-  subject(computing, CF1, E),
-  technology(CF3),
-  like_interact(CF2),
-  planning(yes),
-  calculate_cf([CF1, CF2], 100, CF),
-  nl, write('Recommendation: Information Technology '), 
-  write('(cf '), write(CF), write(')'), nl,
-  write(E).
-
-degree(information_technology) :-
-  subject(computing, CF1, E),
-  calculate_cf([CF1], 70, CF),
-  nl, write('Recommendation: Information Technology '), 
-  write('(cf '), write(CF), write(')'), nl,
-  write(E).
-
-% --------------------
-% Subject: Engineering
-% --------------------
 subject(engineering, CombinedCF, E) :-
   logical_thinking(CF1),
   science(yes),
@@ -196,6 +174,39 @@ subject(hospitality, CombinedCF, E) :-
   serving_people(yes),
   calculate_cf([100], 90, CombinedCF),
   E = 'You like to interact with people.'.
+
+% Degree: Computer Science
+degree(computer_science) :- 
+  subject(computing, CF1, E),
+  computer_systems(CF2),
+  technology(CF3),  
+  calculate_cf([CF1, CF2, CF3], 100, CF),
+  % Debug 
+  write_combinedCF(CF1, CF2, CF3, CF),
+  nl, write('Recommendation: Computer Science '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
+
+% Degree: Information Technology
+degree(information_technology) :- 
+  subject(computing, CF1, E),
+  like_interact(CF2),
+  planning(yes),
+  calculate_cf([CF1, CF2], 100, CF),
+  % Debug
+  write_combinedCF(CF1, CF2, CF),
+  nl, write('Recommendation: Information Technology '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
+
+degree(information_technology) :-
+  subject(computing, CF1, E),
+  calculate_cf([CF1], 70, CF),
+  % Debug
+  write_combinedCF(CF1, 100, CF),
+  nl, write('Recommendation: Information Technology '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Electrical Engineering
 degree(electrical_engineering) :-
@@ -319,7 +330,7 @@ degree(gap_year) :-
 % Uncertainty
 % ===========
 calculate_cf(CFList, CF, RulesCF) :-
-  min_in_list(CFList, Min),
+  min_in_list(CFList, Min), !,
   RulesCF is div(Min * CF, 100).
 
 min_in_list([Min],Min). 
@@ -678,6 +689,5 @@ ask_with_cf(Question, Answer, Choices) :-
   answers(Choices, 1),
   read(Index),
   CF is Index * 20,
-  write('CF in ask_with_cf: '), write(CF),
   asserta(progress(Question, CF)),
   CF = Answer.
