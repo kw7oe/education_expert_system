@@ -44,6 +44,9 @@ subject(computing, CombinedCF, E) :-
   work_with_numbers(yes),
   maths(yes),
   calculate_cf([CF1, CF2], 100, CombinedCF),
+  write('CF1: '), write(CF1),
+  write('CF2: '), write(CF2),
+  write('CombinedCF: '), write(CombinedCF),
   E = 'You are a logical person and don\'t like physics. \c 
   However, you are good in maths and solving problems.'.
 
@@ -52,6 +55,7 @@ subject(computing, CombinedCF, E) :-
   work_with_numbers(no),
   maths(yes),
   calculate_cf([CF1], 85, CombinedCF),
+  write('CombinedCF: '), write(CombinedCF),
   E = 'You are good in maths and solving problems. \c
   You also prefer to work on a computer.'.
 
@@ -59,6 +63,7 @@ subject(computing, CombinedCF, E) :-
   computer_or_hands(computer),
   blogs(technology),
   calculate_cf([100], 70, CombinedCF),
+  write('CombinedCF: '), write(CombinedCF),
   E = 'You perfer working on a computer and like reading \c 
   blogs related to technology.'.
 
@@ -673,5 +678,6 @@ ask_with_cf(Question, Answer, Choices) :-
   answers(Choices, 1),
   read(Index),
   CF is Index * 20,
+  write('CF in ask_with_cf: '), write(CF),
   asserta(progress(Question, CF)),
-  Index = Answer.
+  CF = Answer.
