@@ -54,6 +54,8 @@ subject(computing, CombinedCF, E) :-
   computer_or_hands(computer),
   work_with_numbers(yes),
   maths(yes),
+  larger_than_CF(CF1),
+  larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
@@ -64,6 +66,7 @@ subject(computing, CombinedCF, E) :-
   solving_problem(CF1),
   work_with_numbers(no),
   maths(yes),
+  larger_than_CF(CF1),
   calculate_cf([CF1], 85, CombinedCF),
   % Debug
   write_combinedCF(CF1, 100, CombinedCF),
@@ -85,7 +88,9 @@ subject(engineering, CombinedCF, E) :-
   theory_or_pratical(pratical),
   solving_problem(CF2),
   challenge_yourself(yes),
-  work_with_numbers(yes), 
+  work_with_numbers(yes),
+  larger_than_CF(CF1),
+  larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 100, CombinedCF),
   E = 'You love science \c 
   and like to work with numbers.'.
@@ -96,6 +101,7 @@ subject(engineering, CombinedCF, E) :-
   theory_or_pratical(pratical),
   solving_problem(CF1),
   challenge_yourself(yes),
+  larger_than_CF(CF1),
   calculate_cf([CF1], 90, CombinedCF),
   E = 'You love science \c 
   and like to work with numbers.'.
@@ -108,6 +114,8 @@ subject(science, CombinedCF, E) :-
   theory_or_pratical(theory),
   work_with_numbers(yes),
   blogs(science),
+  larger_than_CF(CF1),
+  larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 90, CombinedCF),
   E = 'You love science, prefer theory \c 
   and like to work with numbers.'.
@@ -124,6 +132,8 @@ subject(business, CombinedCF, E) :-
   dealing_with_people(CF1),  
   planning(yes),
   risk(CF2),
+  larger_than_CF(CF1),
+  larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 80, CombinedCF),
   E = 'You are good in planning.'.
 
@@ -132,7 +142,8 @@ subject(business, CombinedCF, E) :-
   dealing_with_people(CF1),
   blogs(business),
   planning(yes),
-  calculate_cf([CF1, 100], 80, CombinedCF),
+  larger_than_CF(CF1),
+  calculate_cf([CF1], 80, CombinedCF),
   E = 'You like to interact with people.'.
 
 % Subject: Art
@@ -142,7 +153,8 @@ subject(art, CombinedCF, E) :-
   creative_artistic_musical(yes),
   work_with_numbers(no),
   going_museum(yes),
-  calculate_cf([CF1, 100], 100, CombinedCF),
+  larger_than_CF(CF1),
+  calculate_cf([CF1], 100, CombinedCF),
   E = 'You like to interact with people.'.
 
 subject(art, CombinedCF, E) :-
@@ -179,7 +191,10 @@ subject(hospitality, CombinedCF, E) :-
 degree(computer_science) :- 
   subject(computing, CF1, E),
   computer_systems(CF2),
-  technology(CF3),  
+  technology(CF3),
+  larger_than_CF(CF1),
+  larger_than_CF(CF2),
+  larger_than_CF(CF3),  
   calculate_cf([CF1, CF2, CF3], 100, CF),
   % Debug 
   write_combinedCF(CF1, CF2, CF3, CF),
@@ -192,6 +207,8 @@ degree(information_technology) :-
   subject(computing, CF1, E),
   like_interact(CF2),
   planning(yes),
+  larger_than_CF(CF1),
+  larger_than_CF(CF2), 
   calculate_cf([CF1, CF2], 100, CF),
   % Debug
   write_combinedCF(CF1, CF2, CF),
@@ -201,6 +218,7 @@ degree(information_technology) :-
 
 degree(information_technology) :-
   subject(computing, CF1, E),
+  larger_than_CF(CF1),
   calculate_cf([CF1], 70, CF),
   % Debug
   write_combinedCF(CF1, 100, CF),
@@ -211,6 +229,7 @@ degree(information_technology) :-
 % Degree: Electrical Engineering
 degree(electrical_engineering) :-
   subject(engineering, CF1, E),
+  larger_than_CF(CF1),
   physics(yes),
   circuits(yes),
   calculate_cf([CF1], 90, CF),
@@ -221,6 +240,7 @@ degree(electrical_engineering) :-
 % Degree: Mechanical Engineering
 degree(mechanical_engineering) :-
   subject(engineering, CF1, E),
+  larger_than_CF(CF1),
   physics(yes),
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Mechanical Engineering '), 
@@ -230,6 +250,7 @@ degree(mechanical_engineering) :-
 % Degree: Chemical Engineering
 degree(chemical_engineering) :-
   subject(engineering, CF1, E),
+  larger_than_CF(CF1),
   chemistry(yes),
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Chemical Engineering '), 
@@ -239,6 +260,7 @@ degree(chemical_engineering) :-
 % Degree: Biotechnology
 degree(biotechnology) :-
   subject(science, CF1, E),
+  larger_than_CF(CF1),
   biology(yes),
   genetic_engineering(yes),
   calculate_cf([CF1], 90, CF),
@@ -249,6 +271,7 @@ degree(biotechnology) :-
 % Degree: Pure Science
 degree(pure_science) :- 
   subject(science, CF1, E),
+  larger_than_CF(CF1),
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Pure Science '), 
   write('(cf '), write(CF), write(')'), nl,
@@ -257,6 +280,7 @@ degree(pure_science) :-
 % Degree: Marketing
 degree(marketing) :-
   subject(business, CF1, E),
+  larger_than_CF(CF1),
   storytelling(yes),
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Marketing '), 
@@ -266,6 +290,7 @@ degree(marketing) :-
 % Degree: Accounting
 degree(accounting) :-
   subject(business, CF1, E),
+  larger_than_CF(CF1),
   work_with_numbers(yes),
   detail_oriented(yes),
   calculate_cf([CF1], 90, CF),
@@ -276,6 +301,7 @@ degree(accounting) :-
 % Degree: Business Management
 degree(business_management) :-
   subject(business, CF1, E),
+  larger_than_CF(CF1), 
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Business Management '), 
   write('(cf '), write(CF), write(')'), nl,
@@ -284,6 +310,7 @@ degree(business_management) :-
 % Degree: Performing Art
 degree(performing_art) :-
   subject(art, CF1, E),
+  larger_than_CF(CF1),
   center_of_attention(yes),
   film_or_perform(perform),
   performing(yes),  
@@ -295,6 +322,7 @@ degree(performing_art) :-
 % Degree: Digital Film Production
 degree(digital_film_production) :-
   subject(art, CF1, E),
+  larger_than_CF(CF1),
   film_or_perform(film),
   film(yes),  
   calculate_cf([CF1], 90, CF),
@@ -305,6 +333,7 @@ degree(digital_film_production) :-
 % Degree: Culinary Art
 degree(culinary_art) :- 
   subject(hospitality, CF1, E),
+  larger_than_CF(CF1),
   cook(yes),  
   calculate_cf([CF1], 100, CF),
   nl, write('Recommendation: Culinary Art '), 
@@ -314,6 +343,7 @@ degree(culinary_art) :-
 % Degree: Hotel Management
 degree(hotel_management) :- 
   subject(hospitality, CF1, E),  
+  larger_than_CF(CF1),
   calculate_cf([CF1], 100, CF),
   nl, write('Recommendation: Hotel Management '), 
   write('(cf '), write(CF), write(')'), nl,
@@ -331,7 +361,11 @@ degree(gap_year) :-
 % ===========
 calculate_cf(CFList, CF, RulesCF) :-
   min_in_list(CFList, Min), !,
-  RulesCF is div(Min * CF, 100).
+  RulesCF is div(Min * CF, 100),
+  larger_than_CF(RulesCF).
+
+larger_than_CF(CF):-
+  CF>=60.
 
 min_in_list([Min],Min). 
 min_in_list([H,K|T],M) :-
