@@ -32,91 +32,137 @@ physics_person :- work_with_numbers(yes), maths(yes), physics(yes).
 % =======
 % Subject
 % =======
-subject(computing) :-
+subject(computing,E) :-
   logical_thinking,
-  physics(no),
   better_in(solving_problem),
   computer_or_hands(computer),
   work_with_numbers(yes),
-  maths(yes).
+  maths(yes),
+  E='You are a logical person. \c 
+  You are also good in maths and solving problems using computer. \c
+  So, you are suitable for computing subject.'.
 
-subject(computing) :-
+subject(computing,E) :-
   imaginary_thinking,
   better_in(solving_problem),
   computer_or_hands(computer),
   work_with_numbers(no),
-  maths(yes).
+  maths(yes),
+  E='You are good in maths and solving problems.\c
+  So, you are suitable for computing subject.'.
 
-subject(computing) :-
+subject(computing,E) :-
   computer_or_hands(computer),
-  blogs(technology).
+  blogs(technology),
+  E='You perfer working on a computer and like reading \c 
+  blogs related to technology.\c
+  So, you are suitable for computing subject.'.
 
-subject(engineering) :-
+subject(engineering,E) :-
   logical_thinking,
   science(yes),
   theory_or_pratical(pratical),
   better_in(solving_problem),
   challenge_yourself(yes),
-  work_with_numbers(yes).
+  work_with_numbers(yes),
+  E='You are a logical person and like science. \c
+  You like to do practical stuff and good in solving problems.\c
+  You also like to challenge yourself and work with numbers.\c
+  So, you are suitable for engineering subject.'.
 
-subject(engineering) :- 
+subject(engineering,E) :- 
   science(yes),
   blogs(science),
   theory_or_pratical(pratical),
   better_in(solving_problem),
-  challenge_yourself(yes).
+  challenge_yourself(yes),
+  E='You love science and like to read blogs related to science.\c
+  You like to do practical stuff and good in solving problems.\c
+  You also like to challenge yourself.\c
+  So, you are suitable for engineering subject.'.
 
-subject(science) :-
+subject(science,E) :-
   logical_thinking,
   science(yes),
   better_in(solving_problem),
   theory_or_pratical(theory),
   work_with_numbers(yes),
-  blogs(science).
+  blogs(science),
+  E='You are a logical person who love science.\c
+  You are good in solving problem and like theory over practical.\c
+  You like to work with numbers and read blogs related to science.\c
+  So, you are suitable for science subject.'.
 
-subject(science) :-
+subject(science,E) :-
   science(yes),
-  theory_or_pratical(theory).
+  theory_or_pratical(theory),
+  E='You love science and prefer theory over practical.\c
+  So, you are suitable for science subject.'.
 
-subject(business) :-  
+subject(business,E) :-  
   like_interact(yes),
   better_in(dealing_with_people),  
   planning(yes),
-  risk(yes).
+  risk(yes),
+  E='You like to interact with people, dealing with people and like planning.\c
+  You are also a risk taker.\c
+  So, you are suitable for business subject.'.
 
-subject(business) :-
+subject(business,E) :-
   like_interact(yes),
   better_in(dealing_with_people),
   blogs(business),
-  planning(yes).
+  planning(yes),
+  E='You like to interact and dealing with people.\c
+  You also like to read business blog and planning.\c
+  So, you are suitable for business subject.'.
 
-subject(art) :- 
+subject(art,E) :- 
   imaginary_thinking,
   science(no),
   creative_artistic_musical(yes),
   work_with_numbers(no),
-  going_museum(yes).
+  going_museum(yes),
+  E='You are a person who like to imagine and does not like science.\c
+  You are also a creative or artistic or musical person.\c
+  You does not like working with numbers.\c
+  You like going to movie theater or museum.\c
+  So, you are suitable for art subject.'.
 
-subject(art) :-
+subject(art,E) :-
   science(no),
   creative_artistic_musical(yes),
-  work_with_numbers(no).
+  work_with_numbers(no),
+  E='You does not like science.\c
+  You are a creative or artistic or musical person.\c
+  You does not like working with numbers.\c
+  So, you are suitable for art subject.'.
 
-subject(hospitality) :-
+subject(hospitality,E) :-
   computer_or_hands(hands),  
   like_interact(yes),  
   planning(yes),
   service_minded(yes),
-  serving_people(yes).
+  serving_people(yes),
+  E='You prefer to working with hands.\c
+  You like to interact with people and planning.\c
+  You are a service minded person who like to serve people.\c
+  So, you are suitable for hospitality subject.'.
 
-subject(hospitality) :-
+subject(hospitality,E) :-
   computer_or_hands(hands), 
   service_minded(yes),
-  serving_people(yes).
+  serving_people(yes),
+  E='You prefer to working with hands.\c
+  You are a service minded person who like to serve people.\c
+  So, you are suitable for hospitality subject.'.
 
-subject(hospitality) :-
+subject(hospitality,E) :-
   computer_or_hands(hands),
-  serving_people(yes).
+  serving_people(yes),
+  E='You prefer working with hands.\c
+  You like to serve people.\c
+  So, you are suitable for hospitality subject.'.
 
 % ======
 % Degree
@@ -124,77 +170,317 @@ subject(hospitality) :-
 
 % Computing
 degree(computer_science) :- 
-  subject(computing),
+  subject(computing,E),
   computer_systems(yes),
-  technology(develop).
+  technology(develop),
+  write('Recommendation: Computer Science '), 
+  nl,
+  write('You are interested in the details of how computer systems or software works.\c
+  You also prefer to develop technology rather than apply technology.\c
+  So, you are suitable for the degree of computer science.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chief Technology Officer'),nl,
+  write('- Software Engineer / Software Architect'),nl,
+  write('- Mobile App Developer'),nl,
+  write('- Game Developer'),nl,
+  write('- System Designer'),nl,
+  write('- Network Specialist'),nl,
+  write('- Research Analyst'),nl,
+  write('- Software Quality Assurance Officer'),nl,
+  write('- Enterprise Distributed Application Developer').
 degree(computer_science) :-
-  subject(computing),
-  computer_systems(yes).
+  subject(computing,E),
+  computer_systems(yes),
+  write('Recommendation: Computer Science '), 
+  nl,
+  write('You are interested in the details of how computer systems or software works.\c
+  You also prefer to develop technology rather than apply technology.\c
+  So, you are suitable for the degree of computer science.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chief Technology Officer'),nl,
+  write('- Software Engineer / Software Architect'),nl,
+  write('- Mobile App Developer'),nl,
+  write('- Game Developer'),nl,
+  write('- System Designer'),nl,
+  write('- Network Specialist'),nl,
+  write('- Research Analyst'),nl,
+  write('- Software Quality Assurance Officer'),nl,
+  write('- Enterprise Distributed Application Developer').
 degree(computer_science) :-
-  subject(computing),
-  technology(develop).
+  subject(computing,E),
+  technology(develop),
+  write('Recommendation: Computer Science '), 
+  nl,
+  write('You are interested in the details of how computer systems or software works.\c
+  You also prefer to develop technology rather than apply technology.\c
+  So, you are suitable for the degree of computer science.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chief Technology Officer'),nl,
+  write('- Software Engineer / Software Architect'),nl,
+  write('- Mobile App Developer'),nl,
+  write('- Game Developer'),nl,
+  write('- System Designer'),nl,
+  write('- Network Specialist'),nl,
+  write('- Research Analyst'),nl,
+  write('- Software Quality Assurance Officer'),nl,
+  write('- Enterprise Distributed Application Developer').
 
 degree(information_technology) :- 
-  subject(computing),
+  subject(computing,E),
   technology(apply),
   like_interact(yes),
-  planning(yes).
+  planning(yes),
+  write('Recommendation: Information Technology '), 
+  nl,
+  write('You are interested to interact with people and like to planning.\c
+  So, you are suitable for the degree of information technology.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- IT Specialist'),nl,
+  write('- Network Specialist'),nl,
+  write('- System Engineer'),nl,
+  write('- Web / E-Commerce Architect'),nl,
+  write('- Database Architect'),nl,
+  write('- IT Infrastructure Engineer').
 degree(information_technology) :-
-  subject(computing).
+  subject(computing,E),
+  write('Recommendation: Information Technology '), 
+  nl,
+  write('You are suitable for the degree of information technology.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- IT Specialist'),nl,
+  write('- Network Specialist'),nl,
+  write('- System Engineer'),nl,
+  write('- Web / E-Commerce Architect'),nl,
+  write('- Database Architect'),nl,
+  write('- IT Infrastructure Engineer').
 
 % Engineering
 degree(electrical_engineering) :-
-  subject(engineering),
+  subject(engineering,E),
   physics(yes),
-  circuits(yes).
+  circuits(yes),
+  write('Recommendation: Electrical Engineering '), 
+  nl,
+  write('You like physics and like to deal with circuits. \c
+  You are suitable for the degree of electrical engineering.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Electrical or Electronic Engineer'),nl,
+  write('- Design Manager in Designing'),nl,
+  write('- Maintenance of Electrical Power System, Electricity Generation, Transmission, Distribution, Utilisation'),nl,
+  write('- Electronic System for Operational Safety/Efficiency or Designing Renewable Energy System').
 degree(mechanical_engineering) :-
-  subject(engineering),
-  physics(yes).
+  subject(engineering,E),
+  physics(yes),
+  write('Recommendation: Mechanical Engineering '), 
+  nl,
+  write('You like physics. \c
+  You are suitable for the degree of mechanical engineering.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Mechanical Engineer'),nl,
+  write('- Production Engineer'),nl,
+  write('- Failure Analyst Engineer'),nl,
+  write('- M&E Engineer'),nl,
+  write('- QC Engineer'),nl,
+  write('- Manufacturing Engineer'),nl,
+  write('- R&D Engineer'),nl,
+  write('- Design Engineer'),nl,
+  write('- Product Engineer').
 
 % Error, wont go into here
 degree(chemical_engineering) :-
-  subject(engineering),
+  subject(engineering,E),
   physics(no),
-  chemistry(yes).
+  chemistry(yes),
+  write('Recommendation: Chemical Engineering '), 
+  nl,
+  write('You like chemistry. \c
+  You are suitable for the degree of chemical engineering.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Process Engineer'),nl,
+  write('- Quality Assurance Engineer'),nl,
+  write('- Chemical & Biochemical Engineer'),nl,
+  write('- Contamination Engineer').
 
 % Science
 degree(biotechnology) :-
-  subject(science),
+  subject(science,E),
   biology(yes),
-  genetic_engineering(yes).
+  genetic_engineering(yes),
+  write('Recommendation: Biotechnology '), 
+  nl,
+  write('You like biology and find generic engineering interesting.\c
+  You are suitable for the degree of biotechnology.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Pharmaceutical Research & Development'),nl,
+  write('- Pharmaceutical Marketing Director'),nl,
+  write('- Clinical Trial Manager'),nl,
+  write('- Clinical Research Scientist'),nl,
+  write('- Biomedical & Biotechnology Research Scientist'),nl,
+  write('- Medical & Scientific Product Specialist'),nl,
+  write('- Medical Laboratories Director'),nl,
+  write('- Academia (Science Educator)').
 degree(pure_science) :- 
-  subject(science).
+  subject(science,E),
+  write('Recommendation: Pure Science '), 
+  nl,
+  write('You are suitable for the degree of pure science.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Analytical/Biomedical chemist'),nl,
+  write('- Biotechnologist'),nl,
+  write('- Quality controller'),nl,
+  write('- Science journalist'),nl,
+  write('- Process control specialist').
 
 % Business
 degree(marketing) :-
-  subject(business),
-  storytelling(yes).
+  subject(business,E),
+  storytelling(yes),
+  write('Recommendation: Marketing '), 
+  nl,
+  write('You like storytelling.\c
+  You are suitable for the degree of marketing.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chief Executive Officer'),nl,
+  write('- Chief Marketing Officer'),nl,
+  write('- Advertising and Promotions Specialist'),nl,
+  write('- Product Manager'),nl,
+  write('- Brand Manager'),nl,
+  write('- Marketing Consultant'),nl,
+  write('- Management Consultant'),nl,
+  write('- Retail Expert'),nl,
+  write('- Customer Relationship Associate / Manager'),nl,
+  write('- Supply Chain Manager'),nl,
+  write('- Key Accounts Specialist / Manager'),nl,
+  write('- Consumer Research Analyst / Manager'),nl,
+  write('- Events Producer').
 degree(accounting) :-
-  subject(business),
+  subject(business,E),
   work_with_numbers(yes),
-  detail_oriented(yes).
+  detail_oriented(yes),
+  write('Recommendation: Accounting '), 
+  nl,
+  write('You like working with numbers and you are a detail oriented person.\c
+  You are suitable for the degree of accounting.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chief Financial Officer'),nl,
+  write('- Investment Banker'),nl,
+  write('- Commercial Banker'),nl,
+  write('- Financial Controller'),nl,
+  write('- Internal & External Auditor'),nl,
+  write('- Management Consultant'),nl,
+  write('- Tax Consultant'),nl,
+  write('- Finance Analyst'),nl,
+  write('- Fund Manager'),nl,
+  write('- Financial Planner'),nl,
+  write('- Corporate Treasurer').
 degree(business_management) :-
-  subject(business).
+  subject(business,E),
+  write('Recommendation: Business Management '), 
+  nl,
+  write('You are suitable for the degree of business management'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chief Executive Officer'),nl,
+  write('- Business Consultant'),nl,
+  write('- Entrepreneur'),nl,
+  write('- General Manager'),nl,
+  write('- Strategic Planner'),nl,
+  write('- Marketing Manager'),nl,
+  write('- HR Manager'),nl,
+  write('- Operation / Project Manager'),nl,
+  write('- Researcher'),nl,
+  write('- Organisational Development Manager'),nl,
+  write('- Procurement Manager').
 
 % Arts
 degree(performing_art) :-
-  subject(art),
+  subject(art,E),
   center_of_attention(yes),
   film_or_perform(perform),
-  performing(yes).
+  performing(yes),
+  write('Recommendation: Performing Art '), 
+  nl,
+  write('You like to become the center of attention and like to perform over film.\c
+  You are suitable for the degree of performing art.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Actor'),nl,
+  write('- Voice Over Talent'),nl,
+  write('- Director'),nl,
+  write('- Producer'),nl,
+  write('- Production Manager'),nl,
+  write('- Stage Manager'),nl,
+  write('- Cinematographer'),nl,
+  write('- Editor'),nl,
+  write('- Production Designer'),nl,
+  write('- Script Writer'),nl,
+  write('- Drama Teacher').
 degree(digital_film_production) :-
-  subject(art),
+  subject(art,E),
   film_or_perform(film),
-  film(yes).
+  film(yes),
+  write('Recommendation: Digital Film Production '), 
+  nl,
+  write('You like to film over perform.\c
+  You are suitable for the degree of digital film production.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Audio-Visual Producer'),nl,
+  write('- Transmedia Designer'),nl,
+  write('- Documentary Filmmaker'),nl,
+  write('- Creative Entrepreneur'),nl,
+  write('- Videographer'),nl,
+  write('- Director'),nl,
+  write('- Production Designer'),nl,
+  write('- Video Producer').
 
 % Hospitality
 degree(culinary_art) :- 
-  subject(hospitality),
-  cook(yes).
+  subject(hospitality,E),
+  cook(yes),
+  write('Recommendation: Culinary Art '), 
+  nl,
+  write('You enjoy cooking.\c
+  You are suitable for the degree of culinary art.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chef de Cuisine / Executive Chef'),nl,
+  write('- Banquet Manager'),nl,
+  write('- Food and Beverage Manager'),nl,
+  write('- In-flight Food Manager'),nl,
+  write('- Product Development Manager'),nl,
+  write('- Restaurant Owner / Entrepreneur').
 degree(hotel_management) :- 
-  subject(hospitality).
+  subject(hospitality,E),
+  write('Recommendation: Hotel Management '), 
+  nl,
+  write('You are suitable for the degree of hotel management.'),nl,
+  write(E),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Sales and Marketing Manager'),nl,
+  write('- Front Office Manager'),nl,
+  write('- Hotel Human Resource Manager'),nl,
+  write('- Rooms Division Manager'),nl,
+  write('- Purchasing Manager'),nl,
+  write('- Food & Beverage Manager').
 
-degree(gap_year).
+degree(gap_year):-
+  write('Recommendation: Gap Year '), 
+  nl,
+  write('Sorry. We cannot help you because you have a \c
+    a variety of traits.').
 
 % =========
 % Questions

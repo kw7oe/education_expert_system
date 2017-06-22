@@ -39,21 +39,6 @@ logical_thinking(RulesCF) :-
   larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 100, RulesCF).
 
-write_combinedCF(CF1, CF2, CombinedCF) :-
-  write('--------'), nl,
-  write('CF1: '), write(CF1), nl,
-  write('CF2: '), write(CF2), nl,
-  write('CombinedCF: '), write(CombinedCF), nl,
-  write('--------'), nl.
-
-write_combinedCF(CF1, CF2, CF3, CombinedCF) :-
-  write('--------'), nl,
-  write('CF1: '), write(CF1), nl,
-  write('CF2: '), write(CF2), nl,
-  write('CF3: '), write(CF3), nl,
-  write('CombinedCF: '), write(CombinedCF), nl,
-  write('--------'), nl.
-
 % =======
 % Subject
 % =======
@@ -67,7 +52,7 @@ subject(computing, CombinedCF,E) :-
   maths(yes),
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
+  
   E='You are a logical person. \c 
   You are also good in maths and solving problems using computer. \c
   So, you are suitable for computing subject.'.
@@ -81,7 +66,7 @@ subject(computing, CombinedCF,E) :-
   maths(yes),
   calculate_cf([CF1, CF2], 90, CombinedCF),
   % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
+  
   E='You are good in maths and solving problems.\c
   So, you are suitable for computing subject.'.
 
@@ -91,7 +76,6 @@ subject(computing, CombinedCF,E) :-
   blogs(technology),
   calculate_cf([CF1], 85, CombinedCF),
   % Debug
-  write_combinedCF(CF1, 100, CombinedCF),
   E='You perfer working on a computer and like reading \c 
   blogs related to technology.\c
   So, you are suitable for computing subject.'.
@@ -107,7 +91,6 @@ subject(engineering, CombinedCF,E) :-
   work_with_numbers(yes),
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
-  write_combinedCF(CF1, 100, CombinedCF),
   E='You are a logical person and like science. \c
   You like to do practical stuff and good in solving problems.\c
   You also like to challenge yourself and work with numbers.\c
@@ -122,7 +105,6 @@ subject(engineering, CombinedCF,E) :-
   challenge_yourself(yes),
   calculate_cf([CF1], 90, CombinedCF),
   % Debug
-  write_combinedCF(CF1, 100, CombinedCF),
   E='You love science and like to read blogs related to science.\c
   You like to do practical stuff and good in solving problems.\c
   You also like to challenge yourself.\c
@@ -140,7 +122,7 @@ subject(science, CombinedCF,E) :-
   blogs(science),
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
+  
   E='You are a logical person who love science.\c
   You are good in solving problem and like theory over practical.\c
   You like to work with numbers and read blogs related to science.\c
@@ -152,7 +134,6 @@ subject(science, CombinedCF,E) :-
   theory_or_pratical(theory),
   calculate_cf([CF1], 90, CombinedCF),
   % Debug
-  write_combinedCF(CF1, 100, CombinedCF),
   E='You love science and prefer theory over practical.\c
   So, you are suitable for science subject.'.
 
@@ -167,7 +148,7 @@ subject(business, CombinedCF,E) :-
   larger_than_CF(CF3),
   calculate_cf([CF1, CF2, CF3], 100, CombinedCF),
   % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
+  
   E='You like to interact with people, dealing with people and like planning.\c
   You are also a risk taker.\c
   So, you are suitable for business subject.'.
@@ -181,7 +162,7 @@ subject(business, CombinedCF,E) :-
   planning(yes),
   calculate_cf([CF1, CF2], 90, CombinedCF),
   % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
+  
   E='You like to interact and dealing with people.\c
   You also like to read business blog and planning.\c
   So, you are suitable for business subject.'.
@@ -196,7 +177,7 @@ subject(art, CombinedCF,E) :-
   going_museum(yes),
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
+  
   E='You are a person who like to imagine and does not like science.\c
   You are also a creative or artistic or musical person.\c
   You does not like working with numbers.\c
@@ -209,7 +190,6 @@ subject(art, CombinedCF,E) :-
   work_with_numbers(no),
   calculate_cf([CF1], 90, CombinedCF),
   % Debug
-  write_combinedCF(CF1, 100, CombinedCF),
   E='You does not like science.\c
   You are a creative or artistic or musical person.\c
   You does not like working with numbers.\c
@@ -225,7 +205,7 @@ subject(hospitality, CombinedCF,E) :-
   serving_people(CF2),
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
+  
   E='You prefer to working with hands.\c
   You like to interact with people and planning.\c
   You are a service minded person who like to serve people.\c
@@ -237,7 +217,7 @@ subject(hospitality, CombinedCF,E) :-
   serving_people(CF2),
   calculate_cf([CF1, CF2], 90, CombinedCF),
   % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
+  
   E='You prefer to working with hands.\c
   You are a service minded person who like to serve people.\c
   So, you are suitable for hospitality subject.'.
@@ -247,7 +227,6 @@ subject(hospitality, CombinedCF,E) :-
   serving_people(CF1),
   calculate_cf([CF1], 85, CombinedCF),
   % Debug
-  write_combinedCF(CF1, 100, CombinedCF),
   E='You prefer working with hands.\c
   You like to serve people.\c
   So, you are suitable for hospitality subject.'.
@@ -262,7 +241,7 @@ degree(computer_science) :-
   larger_than_CF(CF3),  
   calculate_cf([CF1, CF2, CF3], 100, CF),
   % Debug 
-  write_combinedCF(CF1, CF2, CF3, CF),
+  
   nl,
   \+inserted(computer_science),
   assert(inserted(computer_science)),
@@ -296,7 +275,7 @@ degree(computer_science) :-
   larger_than_CF(CF2),  
   calculate_cf([CF1, CF2], 95, CF),
   % Debug 
-  write_combinedCF(CF1, CF2, CF),
+  
   nl,
   \+inserted(computer_science),
   assert(inserted(computer_science)),
@@ -329,7 +308,7 @@ degree(computer_science) :-
   larger_than_CF(CF2),  
   calculate_cf([CF1, CF2], 95, CF),
   % Debug 
-  write_combinedCF(CF1, CF2, CF),
+  
   nl, 
   \+inserted(computer_science),
   assert(inserted(computer_science)),
@@ -364,7 +343,7 @@ degree(information_technology) :-
   planning(yes),
   calculate_cf([CF1, CF2], 100, CF),
   % Debug
-  write_combinedCF(CF1, CF2, CF),
+  
   nl, 
   \+inserted(information_technology),
   assert(inserted(information_technology)),
@@ -391,7 +370,6 @@ degree(information_technology) :-
   larger_than_CF(CF1),
   calculate_cf([CF1], 70, CF),
   % Debug
-  write_combinedCF(CF1, 100, CF),
   nl, 
   \+inserted(information_technology),
   assert(inserted(information_technology)),
@@ -506,7 +484,7 @@ degree(biotechnology) :-
   larger_than_CF(CF3),
   calculate_cf([CF1, CF2, CF3], 95, CF),
   % Debug 
-  write_combinedCF(CF1, CF2, CF3, CF),
+  
   nl,
   \+inserted(biotechnology),
   assert(inserted(biotechnology)),
@@ -537,7 +515,6 @@ degree(pure_science) :-
   larger_than_CF(CF1),
   calculate_cf([CF1], 90, CF),
   % Debug 
-  write_combinedCF(CF1, 100, CF),
   nl,
   \+inserted(pure_science),
   assert(inserted(pure_science)),
@@ -565,7 +542,7 @@ degree(marketing) :-
   storytelling(CF2),
   calculate_cf([CF1, CF2], 100, CF),
   % Debug 
-  write_combinedCF(CF1, CF2, CF),
+  
   nl, 
   \+inserted(marketing),
   assert(inserted(marketing)),
@@ -603,7 +580,7 @@ degree(accounting) :-
   detail_oriented(CF2),
   calculate_cf([CF1, CF2], 100, CF),
   % Debug 
-  write_combinedCF(CF1, CF2, CF),
+  
   nl, 
   \+inserted(accounting),
   assert(inserted(accounting)),
@@ -636,7 +613,6 @@ degree(business_management) :-
   larger_than_CF(CF1), 
   calculate_cf([CF1], 100, CF),
   % Debug 
-  write_combinedCF(CF1, 100, CF),
   nl,
   \+inserted(business_management),
   assert(inserted(business_management)),
@@ -674,7 +650,7 @@ degree(performing_art) :-
   larger_than_CF(CF3),
   calculate_cf([CF1, CF2, CF3], 90, CF),
   % Debug 
-  write_combinedCF(CF1, CF2, CF3, CF),
+  
   nl,
   \+inserted(performing_art),
   assert(inserted(performing_art)),
@@ -711,7 +687,7 @@ degree(digital_film_production) :-
   larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 90, CF),
   % Debug 
-  write_combinedCF(CF1, CF2, CF),
+  
   nl,
   \+inserted(digital_film_production),
   assert(inserted(digital_film_production)),
@@ -744,7 +720,7 @@ degree(culinary_art) :-
   larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 100, CF),
   % Debug 
-  write_combinedCF(CF1, CF2, CF),
+  
   nl,
   \+inserted(culinary_art),
   assert(inserted(culinary_art)),
@@ -772,7 +748,6 @@ degree(hotel_management) :-
   larger_than_CF(CF1),
   calculate_cf([CF1], 100, CF),
   % Debug 
-  write_combinedCF(CF1, 100, CF),
   nl,
   \+inserted(hotel_management),
   assert(inserted(hotel_management)),
@@ -784,7 +759,7 @@ degree(hotel_management) :-
   Y = X - 1,
   format('~1f', [Y]), write(')'), nl,
   write('You are suitable for the degree of hotel management.'),nl,
-  write(E)),nl,
+  write(E),nl,
   write('The careers that suitable for you are:'),nl,
   write('- Sales and Marketing Manager'),nl,
   write('- Front Office Manager'),nl,
@@ -792,7 +767,7 @@ degree(hotel_management) :-
   write('- Rooms Division Manager'),nl,
   write('- Purchasing Manager'),nl,
   write('- Food & Beverage Manager')
-  ).
+  )).
 
 % Degree: Gap Year
 degree(gap_year) :-
