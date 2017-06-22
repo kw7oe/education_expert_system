@@ -60,7 +60,6 @@ write_combinedCF(CF1, CF2, CF3, CombinedCF) :-
 subject(computing, CombinedCF,E) :-
   logical_thinking(CF1),
   larger_than_CF(CF1),
-  physics(no),
   solving_problem(CF2),
   larger_than_CF(CF2),
   computer_or_hands(computer),
@@ -69,8 +68,8 @@ subject(computing, CombinedCF,E) :-
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
-  E='You are a logical person and don\'t like physics. \c 
-  However, you are good in maths and solving problems using computer. \c
+  E='You are a logical person. \c 
+  You are also good in maths and solving problems using computer. \c
   So, you are suitable for computing subject.'.
 
 subject(computing, CombinedCF,E) :-
