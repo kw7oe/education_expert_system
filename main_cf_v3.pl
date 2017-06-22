@@ -274,7 +274,17 @@ degree(computer_science) :-
   write('You are interested in the details of how computer systems or software works.\c
   You also prefer to develop technology rather than apply technology.\c
   So, you are suitable for the degree of computer science.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chief Technology Officer'),nl,
+  write('- Software Engineer / Software Architect'),nl,
+  write('- Mobile App Developer'),nl,
+  write('- Game Developer'),nl,
+  write('- System Designer'),nl,
+  write('- Network Specialist'),nl,
+  write('- Research Analyst'),nl,
+  write('- Software Quality Assurance Officer'),nl,
+  write('- Enterprise Distributed Application Developer')).
 
 
 degree(computer_science) :- 
@@ -295,7 +305,17 @@ degree(computer_science) :-
   write('You are interested in the details of how computer systems or software works.\c
   You also prefer to develop technology rather than apply technology.\c
   So, you are suitable for the degree of computer science.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chief Technology Officer'),nl,
+  write('- Software Engineer / Software Architect'),nl,
+  write('- Mobile App Developer'),nl,
+  write('- Game Developer'),nl,
+  write('- System Designer'),nl,
+  write('- Network Specialist'),nl,
+  write('- Research Analyst'),nl,
+  write('- Software Quality Assurance Officer'),nl,
+  write('- Enterprise Distributed Application Developer')).
 
 degree(computer_science) :- 
   subject(computing, CF1,E),  
@@ -315,7 +335,17 @@ degree(computer_science) :-
   write('You are interested in the details of how computer systems or software works.\c
   You also prefer to develop technology rather than apply technology.\c
   So, you are suitable for the degree of computer science.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chief Technology Officer'),nl,
+  write('- Software Engineer / Software Architect'),nl,
+  write('- Mobile App Developer'),nl,
+  write('- Game Developer'),nl,
+  write('- System Designer'),nl,
+  write('- Network Specialist'),nl,
+  write('- Research Analyst'),nl,
+  write('- Software Quality Assurance Officer'),nl,
+  write('- Enterprise Distributed Application Developer')).
 
 % Degree: Information Technology
 degree(information_technology) :- 
@@ -336,7 +366,14 @@ degree(information_technology) :-
   write('(cf '), write(CF), write(')'), nl,
   write('You are interested to interact with people and like to planning.\c
   So, you are suitable for the degree of information technology.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- IT Specialist'),nl,
+  write('- Network Specialist'),nl,
+  write('- System Engineer'),nl,
+  write('- Web / E-Commerce Architect'),nl,
+  write('- Database Architect'),nl,
+  write('- IT Infrastructure Engineer')).
 
 degree(information_technology) :-
   subject(computing, CF1,E),
@@ -352,7 +389,14 @@ degree(information_technology) :-
   write('Recommendation: Information Technology '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You are suitable for the degree of information technology.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- IT Specialist'),nl,
+  write('- Network Specialist'),nl,
+  write('- System Engineer'),nl,
+  write('- Web / E-Commerce Architect'),nl,
+  write('- Database Architect'),nl,
+  write('- IT Infrastructure Engineer')).
 
 % Degree: Electrical Engineering
 degree(electrical_engineering) :-
@@ -371,7 +415,12 @@ degree(electrical_engineering) :-
   write('(cf '), write(CF), write(')'), nl,
   write('You like physics and like to deal with circuits. \c
   You are suitable for the degree of electrical engineering.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Electrical or Electronic Engineer'),nl,
+  write('- Design Manager in Designing'),nl,
+  write('- Maintenance of Electrical Power System, Electricity Generation, Transmission, Distribution, Utilisation'),nl,
+  write('- Electronic System for Operational Safety/Efficiency or Designing Renewable Energy System')).
 
 % Degree: Mechanical Engineering
 degree(mechanical_engineering) :-
@@ -389,7 +438,17 @@ degree(mechanical_engineering) :-
   write('(cf '), write(CF), write(')'), nl,
   write('You like physics. \c
   You are suitable for the degree of mechanical engineering.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Mechanical Engineer'),nl,
+  write('- Production Engineer'),nl,
+  write('- Failure Analyst Engineer'),nl,
+  write('- M&E Engineer'),nl,
+  write('- QC Engineer'),nl,
+  write('- Manufacturing Engineer'),nl,
+  write('- R&D Engineer'),nl,
+  write('- Design Engineer'),nl,
+  write('- Product Engineer')).
 
 % Degree: Chemical Engineering
 degree(chemical_engineering) :-
@@ -407,7 +466,12 @@ degree(chemical_engineering) :-
   write('(cf '), write(CF), write(')'), nl,
   write('You like chemistry. \c
   You are suitable for the degree of chemical engineering.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Process Engineer'),nl,
+  write('- Quality Assurance Engineer'),nl,
+  write('- Chemical & Biochemical Engineer'),nl,
+  write('- Contamination Engineer')).
 
 % Degree: Biotechnology
 degree(biotechnology) :-
@@ -429,7 +493,17 @@ degree(biotechnology) :-
   write('(cf '), write(CF), write(')'), nl,
   write('You like biology and find generic engineering interesting.\c
   You are suitable for the degree of biotechnology.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Pharmaceutical Research & Development'),nl,
+  write('- Pharmaceutical Marketing Director'),nl,
+  write('- Clinical Trial Manager'),nl,
+  write('- Clinical Research Scientist'),nl,
+  write('- Biomedical & Biotechnology Research Scientist'),nl,
+  write('- Medical & Scientific Product Specialist'),nl,
+  write('- Medical Laboratories Director'),nl,
+  write('- Academia (Science Educator)')
+  ).
 
 % Degree: Pure Science
 degree(pure_science) :- 
@@ -446,7 +520,14 @@ degree(pure_science) :-
   write('Recommendation: Pure Science '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You are suitable for the degree of pure science.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Analytical/Biomedical chemist'),nl,
+  write('- Biotechnologist'),nl,
+  write('- Quality controller'),nl,
+  write('- Science journalist'),nl,
+  write('- Process control specialist')
+).
 
 % Degree: Marketing
 degree(marketing) :-
@@ -465,7 +546,22 @@ degree(marketing) :-
   write('(cf '), write(CF), write(')'), nl,
   write('You like storytelling.\c
   You are suitable for the degree of marketing.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chief Executive Officer'),nl,
+  write('- Chief Marketing Officer'),nl,
+  write('- Advertising and Promotions Specialist'),nl,
+  write('- Product Manager'),nl,
+  write('- Brand Manager'),nl,
+  write('- Marketing Consultant'),nl,
+  write('- Management Consultant'),nl,
+  write('- Retail Expert'),nl,
+  write('- Customer Relationship Associate / Manager'),nl,
+  write('- Supply Chain Manager'),nl,
+  write('- Key Accounts Specialist / Manager'),nl,
+  write('- Consumer Research Analyst / Manager'),nl,
+  write('- Events Producer')
+  ).
 
 % Degree: Accounting
 degree(accounting) :-
@@ -485,7 +581,19 @@ degree(accounting) :-
   write('(cf '), write(CF), write(')'), nl,
   write('You like working with numbers and you are a detail oriented person.\c
   You are suitable for the degree of accounting.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chief Financial Officer'),nl,
+  write('- Investment Banker'),nl,
+  write('- Commercial Banker'),nl,
+  write('- Financial Controller'),nl,
+  write('- Internal & External Auditor'),nl,
+  write('- Management Consultant'),nl,
+  write('- Tax Consultant'),nl,
+  write('- Finance Analyst'),nl,
+  write('- Fund Manager'),nl,
+  write('- Financial Planner'),nl,
+  write('- Corporate Treasurer')).
 
 % Degree: Business Management
 degree(business_management) :-
@@ -502,7 +610,20 @@ degree(business_management) :-
   write('Recommendation: Business Management '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You are suitable for the degree of business management'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chief Executive Officer'),nl,
+  write('- Business Consultant'),nl,
+  write('- Entrepreneur'),nl,
+  write('- General Manager'),nl,
+  write('- Strategic Planner'),nl,
+  write('- Marketing Manager'),nl,
+  write('- HR Manager'),nl,
+  write('- Operation / Project Manager'),nl,
+  write('- Researcher'),nl,
+  write('- Organisational Development Manager'),nl,
+  write('- Procurement Manager')
+  ).
 
 % Degree: Performing Art
 degree(performing_art) :-
@@ -525,7 +646,20 @@ degree(performing_art) :-
   write('(cf '), write(CF), write(')'), nl,
   write('You like to become the center of attention and like to perform over film.\c
   You are suitable for the degree of performing art.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Actor'),nl,
+  write('- Voice Over Talent'),nl,
+  write('- Director'),nl,
+  write('- Producer'),nl,
+  write('- Production Manager'),nl,
+  write('- Stage Manager'),nl,
+  write('- Cinematographer'),nl,
+  write('- Editor'),nl,
+  write('- Production Designer'),nl,
+  write('- Script Writer'),nl,
+  write('- Drama Teacher')
+  ).
 
 % Degree: Digital Film Production
 degree(digital_film_production) :-
@@ -546,7 +680,17 @@ degree(digital_film_production) :-
   write('(cf '), write(CF), write(')'), nl,
   write('You like to film over perform.\c
   You are suitable for the degree of digital film production.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Audio-Visual Producer'),nl,
+  write('- Transmedia Designer'),nl,
+  write('- Documentary Filmmaker'),nl,
+  write('- Creative Entrepreneur'),nl,
+  write('- Videographer'),nl,
+  write('- Director'),nl,
+  write('- Production Designer'),nl,
+  write('- Video Producer')
+  ).
 
 % Degree: Culinary Art
 degree(culinary_art) :- 
@@ -566,7 +710,14 @@ degree(culinary_art) :-
   write('(cf '), write(CF), write(')'), nl,
   write('You enjoy cooking.\c
   You are suitable for the degree of culinary art.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Chef de Cuisine / Executive Chef'),nl,
+  write('- Banquet Manager'),nl,
+  write('- Food and Beverage Manager'),nl,
+  write('- In-flight Food Manager'),nl,
+  write('- Product Development Manager'),nl,
+  write('- Restaurant Owner / Entrepreneur')).
 
 % Degree: Hotel Management
 degree(hotel_management) :- 
@@ -583,7 +734,15 @@ degree(hotel_management) :-
   write('Recommendation: Hotel Management '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You are suitable for the degree of hotel management.'),nl,
-  write(E))).
+  write(E)),nl,
+  write('The careers that suitable for you are:'),nl,
+  write('- Sales and Marketing Manager'),nl,
+  write('- Front Office Manager'),nl,
+  write('- Hotel Human Resource Manager'),nl,
+  write('- Rooms Division Manager'),nl,
+  write('- Purchasing Manager'),nl,
+  write('- Food & Beverage Manager')
+  ).
 
 % Degree: Gap Year
 degree(gap_year) :-
