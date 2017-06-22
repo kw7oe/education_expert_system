@@ -269,7 +269,10 @@ degree(computer_science) :-
   assert(describe(computer_science):- ( 
   nl,nl,
   write('Recommendation: Computer Science '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '), 
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You are interested in the details of how computer systems or software works.\c
   You also prefer to develop technology rather than apply technology.\c
   So, you are suitable for the degree of computer science.'),nl,
@@ -300,7 +303,10 @@ degree(computer_science) :-
   assert(describe(computer_science):- (
   nl,nl,
   write('Recommendation: Computer Science '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '), 
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You are interested in the details of how computer systems or software works.\c
   You also prefer to develop technology rather than apply technology.\c
   So, you are suitable for the degree of computer science.'),nl,
@@ -330,7 +336,10 @@ degree(computer_science) :-
   assert(describe(computer_science):- (
   nl,nl,
   write('Recommendation: Computer Science '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You are interested in the details of how computer systems or software works.\c
   You also prefer to develop technology rather than apply technology.\c
   So, you are suitable for the degree of computer science.'),nl,
@@ -362,7 +371,10 @@ degree(information_technology) :-
   assert(describe(information_technology):- (
     nl,nl,
   write('Recommendation: Information Technology '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You are interested to interact with people and like to planning.\c
   So, you are suitable for the degree of information technology.'),nl,
   write(E),nl,
@@ -386,7 +398,10 @@ degree(information_technology) :-
   assert(describe(information_technology):- (
     nl,nl,
   write('Recommendation: Information Technology '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You are suitable for the degree of information technology.'),nl,
   write(E),nl,
   write('The careers that suitable for you are:'),nl,
@@ -411,7 +426,10 @@ degree(electrical_engineering) :-
   assert(describe(electrical_engineering):- (
     nl,nl,
   write('Recommendation: Electrical Engineering '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You like physics and like to deal with circuits. \c
   You are suitable for the degree of electrical engineering.'),nl,
   write(E),nl,
@@ -434,7 +452,10 @@ degree(mechanical_engineering) :-
   assert(describe(mechanical_engineering):- (
     nl,nl,
   write('Recommendation: Mechanical Engineering '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You like physics. \c
   You are suitable for the degree of mechanical engineering.'),nl,
   write(E),nl,
@@ -462,7 +483,10 @@ degree(chemical_engineering) :-
   assert(describe(chemical_engineering):- (
     nl,nl,
   write('Recommendation: Chemical Engineering '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You like chemistry. \c
   You are suitable for the degree of chemical engineering.'),nl,
   write(E),nl,
@@ -489,7 +513,10 @@ degree(biotechnology) :-
   assert(describe(biotechnology):- (
     nl,nl,
   write('Recommendation: Biotechnology '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You like biology and find generic engineering interesting.\c
   You are suitable for the degree of biotechnology.'),nl,
   write(E),nl,
@@ -517,7 +544,10 @@ degree(pure_science) :-
   assert(describe(pure_science):- (
     nl,nl,
   write('Recommendation: Pure Science '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You are suitable for the degree of pure science.'),nl,
   write(E),nl,
   write('The careers that suitable for you are:'),nl,
@@ -542,7 +572,10 @@ degree(marketing) :-
   assert(describe(marketing):- (
     nl,nl,
   write('Recommendation: Marketing '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You like storytelling.\c
   You are suitable for the degree of marketing.'),nl,
   write(E),nl,
@@ -577,7 +610,10 @@ degree(accounting) :-
   assert(describe(accounting):- (
     nl,nl,
   write('Recommendation: Accounting '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You like working with numbers and you are a detail oriented person.\c
   You are suitable for the degree of accounting.'),nl,
   write(E),nl,
@@ -607,7 +643,10 @@ degree(business_management) :-
   assert(describe(business_management):- (
     nl,nl,
   write('Recommendation: Business Management '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You are suitable for the degree of business management'),nl,
   write(E),nl,
   write('The careers that suitable for you are:'),nl,
@@ -642,7 +681,10 @@ degree(performing_art) :-
   assert(describe(performing_art):- (
     nl,nl,
   write('Recommendation: Performing Art '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You like to become the center of attention and like to perform over film.\c
   You are suitable for the degree of performing art.'),nl,
   write(E),nl,
@@ -676,7 +718,10 @@ degree(digital_film_production) :-
   assert(describe(digital_film_production):- (
     nl,nl,
   write('Recommendation: Digital Film Production '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You like to film over perform.\c
   You are suitable for the degree of digital film production.'),nl,
   write(E),nl,
@@ -706,7 +751,10 @@ degree(culinary_art) :-
   assert(describe(culinary_art):- (
     nl,nl,
   write('Recommendation: Culinary Art '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You enjoy cooking.\c
   You are suitable for the degree of culinary art.'),nl,
   write(E),nl,
@@ -731,7 +779,10 @@ degree(hotel_management) :-
   assert(describe(business):- (
     nl,nl,
   write('Recommendation: Hotel Management '), 
-  write('(cf '), write(CF), write(')'), nl,
+  write('(cf '),  
+  X = CF rdiv 50,
+  Y = X - 1,
+  format('~1f', [Y]), write(')'), nl,
   write('You are suitable for the degree of hotel management.'),nl,
   write(E)),nl,
   write('The careers that suitable for you are:'),nl,
