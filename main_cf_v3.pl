@@ -23,6 +23,7 @@ find_degree:-
 % reset_answers must always return true; because retract can return either true
 % or false, we fail the first and succeed with the second.
 reset_answers :-
+  retractall(inserted(_)),
   retractall(describe(_)),
   retract(progress(_, _)),
   fail.
