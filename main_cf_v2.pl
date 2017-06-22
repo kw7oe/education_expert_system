@@ -1,7 +1,9 @@
 main :-
   intro,
   reset_answers,
-  find_degree, nl.
+  find_degree,nl.
+
+intro.
 
 intro :-
   write('Which course should I take?'), nl,
@@ -62,7 +64,8 @@ subject(computing, CombinedCF, E) :-
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
   E = 'You are a logical person and don\'t like physics. \c 
-  However, you are good in maths and solving problems.'.
+  However, you are good in maths and solving problems using computer. \c
+  So, you are suitable for computing subject.'.
 
 subject(computing, CombinedCF, E) :-
   solving_problem(CF1),
@@ -72,8 +75,8 @@ subject(computing, CombinedCF, E) :-
   calculate_cf([CF1], 85, CombinedCF),
   % Debug
   write_combinedCF(CF1, 100, CombinedCF),
-  E = 'You are good in maths and solving problems. \c
-  You also prefer to work on a computer.'.
+  E = 'You are good in maths and solving problems.\c
+  So, you are suitable for computing subject.'.
 
 subject(computing, CombinedCF, E) :-
   computer_or_hands(computer),
@@ -82,7 +85,8 @@ subject(computing, CombinedCF, E) :-
   % Debug
   write_combinedCF(100, 100, CombinedCF),
   E = 'You perfer working on a computer and like reading \c 
-  blogs related to technology.'.
+  blogs related to technology.\c
+  So, you are suitable for computing subject.'.
 
 subject(engineering, CombinedCF, E) :-
   logical_thinking(CF1),
@@ -94,8 +98,10 @@ subject(engineering, CombinedCF, E) :-
   larger_than_CF(CF1),
   larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 100, CombinedCF),
-  E = 'You love science \c 
-  and like to work with numbers.'.
+  E = 'You are a logical person and like science. \c
+  You like to do practical stuff and good in solving problems.\c
+  You also like to challenge yourself and work with numbers.\c
+  So, you are suitable for engineering subject.'.
 
 subject(engineering, CombinedCF, E) :- 
   science(yes),
@@ -105,8 +111,10 @@ subject(engineering, CombinedCF, E) :-
   challenge_yourself(yes),
   larger_than_CF(CF1),
   calculate_cf([CF1], 90, CombinedCF),
-  E = 'You love science \c 
-  and like to work with numbers.'.
+  E = 'You love science and like to read blogs related to science.\c
+  You like to do practical stuff and good in solving problems.\c
+  You also like to challenge yourself.\c
+  So, you are suitable for engineering subject.'.
 
 % Subject: Science
 subject(science, CombinedCF, E) :-
@@ -119,14 +127,17 @@ subject(science, CombinedCF, E) :-
   larger_than_CF(CF1),
   larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 90, CombinedCF),
-  E = 'You love science, prefer theory \c 
-  and like to work with numbers.'.
+  E = 'You are a logical person who love science.\c
+  You are good in solving problem and like theory over practical.\c
+  You like to work with numbers and read blogs related to science.\c
+  So, you are suitable for science subject.'.
 
 subject(science, CombinedCF, E) :-
   science(yes),
   theory_or_pratical(theory),
   calculate_cf([100], 80, CombinedCF),
-  E = 'You love science and prefer theory.'.
+  E = 'You love science and prefer theory over practical.\c
+  So, you are suitable for science subject.'.
 
 % Subject: Business
 subject(business, CombinedCF, E) :-  
@@ -137,7 +148,9 @@ subject(business, CombinedCF, E) :-
   larger_than_CF(CF1),
   larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 80, CombinedCF),
-  E = 'You are good in planning.'.
+  E = 'You like to interact with people, dealing with people and like planning.\c
+  You are also a risk taker.\c
+  So, you are suitable for business subject.'.
 
 subject(business, CombinedCF, E) :-
   like_interact(yes),
@@ -146,7 +159,9 @@ subject(business, CombinedCF, E) :-
   planning(yes),
   larger_than_CF(CF1),
   calculate_cf([CF1], 80, CombinedCF),
-  E = 'You like to interact with people.'.
+  E = 'You like to interact and dealing with people.\c
+  You also like to read business blog and planning.\c
+  So, you are suitable for business subject.'.
 
 % Subject: Art
 subject(art, CombinedCF, E) :- 
@@ -157,14 +172,21 @@ subject(art, CombinedCF, E) :-
   going_museum(yes),
   larger_than_CF(CF1),
   calculate_cf([CF1], 100, CombinedCF),
-  E = 'You like to interact with people.'.
+  E = 'You are a person who like to imagine and does not like science.\c
+  You are also a creative or artistic or musical person.\c
+  You does not like working with numbers.\c
+  You like going to movie theater or museum.\c
+  So, you are suitable for art subject.'.
 
 subject(art, CombinedCF, E) :-
   science(no),
   creative_artistic_musical(yes),
   work_with_numbers(no),
   calculate_cf([100], 90, CombinedCF),
-  E = 'You like to interact with people.'.
+  E = 'You does not like science.\c
+  You are a creative or artistic or musical person.\c
+  You does not like working with numbers.\c
+  So, you are suitable for art subject.'.
 
 % Subject: Hospitality
 subject(hospitality, CombinedCF, E) :-
@@ -174,20 +196,27 @@ subject(hospitality, CombinedCF, E) :-
   service_minded(yes),
   serving_people(yes),
   calculate_cf([100], 90, CombinedCF),
-  E = 'You like to interact with people.'.
+  E = 'You prefer to working with hands.\c
+  You like to interact with people and planning.\c
+  You are a service minded person who like to serve people.\c
+  So, you are suitable for hospitality subject.'.
 
 subject(hospitality, CombinedCF, E) :-
   computer_or_hands(hands), 
   service_minded(yes),
   serving_people(yes),
   calculate_cf([100], 90, CombinedCF),
-  E = 'You like to interact with people.'.
+  E = 'You prefer to working with hands.\c
+  You are a service minded person who like to serve people.\c
+  So, you are suitable for hospitality subject.'.
 
 subject(hospitality, CombinedCF, E) :-
   computer_or_hands(hands),
   serving_people(yes),
   calculate_cf([100], 90, CombinedCF),
-  E = 'You like to interact with people.'.
+  E = 'You prefer working with hands.\c
+  You like to serve people.\c
+  So, you are suitable for hospitality subject.'.
 
 % Degree: Computer Science
 degree(computer_science) :- 
@@ -202,7 +231,11 @@ degree(computer_science) :-
   write_combinedCF(CF1, CF2, CF3, CF),
   nl, write('Recommendation: Computer Science '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You are interested in the details of how computer systems or software works.\c
+  You also prefer to develop technology rather than apply technology.\c
+  So, you are suitable for the degree of computer science.').
+  
 
 % Degree: Information Technology
 degree(information_technology) :- 
@@ -216,7 +249,9 @@ degree(information_technology) :-
   write_combinedCF(CF1, CF2, CF),
   nl, write('Recommendation: Information Technology '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You are interested to interact with people and like to planning.\c
+  So, you are suitable for the degree of information technology.').
 
 degree(information_technology) :-
   subject(computing, CF1, E),
@@ -226,7 +261,8 @@ degree(information_technology) :-
   write_combinedCF(CF1, 100, CF),
   nl, write('Recommendation: Information Technology '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You are suitable for the degree of information technology.').
 
 % Degree: Electrical Engineering
 degree(electrical_engineering) :-
@@ -237,7 +273,9 @@ degree(electrical_engineering) :-
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Electrical Engineering '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like physics and like to deal with circuits. \c
+  You are suitable for the degree of electrical engineering.').
 
 % Degree: Mechanical Engineering
 degree(mechanical_engineering) :-
@@ -247,7 +285,9 @@ degree(mechanical_engineering) :-
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Mechanical Engineering '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like physics. \c
+  You are suitable for the degree of mechanical engineering.').
 
 % Degree: Chemical Engineering
 degree(chemical_engineering) :-
@@ -257,7 +297,9 @@ degree(chemical_engineering) :-
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Chemical Engineering '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like chemistry. \c
+  You are suitable for the degree of chemical engineering.').
 
 % Degree: Biotechnology
 degree(biotechnology) :-
@@ -268,7 +310,9 @@ degree(biotechnology) :-
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Biotechnology '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like biology and find generic engineering interesting.\c
+  You are suitable for the degree of biotechnology.').
 
 % Degree: Pure Science
 degree(pure_science) :- 
@@ -277,7 +321,8 @@ degree(pure_science) :-
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Pure Science '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You are suitable for the degree of pure science.').
 
 % Degree: Marketing
 degree(marketing) :-
@@ -287,7 +332,9 @@ degree(marketing) :-
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Marketing '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like storytelling.\c
+  You are suitable for the degree of marketing.').
 
 % Degree: Accounting
 degree(accounting) :-
@@ -298,7 +345,9 @@ degree(accounting) :-
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Accounting '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like working with numbers and you are a detail oriented person.\c
+  You are suitable for the degree of accounting.').
 
 % Degree: Business Management
 degree(business_management) :-
@@ -307,7 +356,8 @@ degree(business_management) :-
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Business Management '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You are suitable for the degree of business management').
 
 % Degree: Performing Art
 degree(performing_art) :-
@@ -319,7 +369,9 @@ degree(performing_art) :-
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Performing Art '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like to become the center of attention and like to perform over film.\c
+  You are suitable for the degree of performing art.').
 
 % Degree: Digital Film Production
 degree(digital_film_production) :-
@@ -330,7 +382,9 @@ degree(digital_film_production) :-
   calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Digital Film Production '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like to film over perform.\c
+  You are suitable for the degree of digital film production.').
 
 % Degree: Culinary Art
 degree(culinary_art) :- 
@@ -340,7 +394,9 @@ degree(culinary_art) :-
   calculate_cf([CF1], 100, CF),
   nl, write('Recommendation: Culinary Art '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You enjoy cooking.\c
+  You are suitable for the degree of culinary art.').
 
 % Degree: Hotel Management
 degree(hotel_management) :- 
@@ -349,7 +405,8 @@ degree(hotel_management) :-
   calculate_cf([CF1], 100, CF),
   nl, write('Recommendation: Hotel Management '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You are suitable for the degree of hotel management.').
 
 % Degree: Gap Year
 degree(gap_year) :-
