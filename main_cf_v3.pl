@@ -58,13 +58,13 @@ write_combinedCF(CF1, CF2, CF3, CombinedCF) :-
 % =======
 subject(computing, CombinedCF,E) :-
   logical_thinking(CF1),
+  larger_than_CF(CF1),
   physics(no),
   solving_problem(CF2),
+  larger_than_CF(CF2),
   computer_or_hands(computer),
   work_with_numbers(yes),
   maths(yes),
-  larger_than_CF(CF1),
-  larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
@@ -74,11 +74,11 @@ subject(computing, CombinedCF,E) :-
 
 subject(computing, CombinedCF,E) :-
   logical_thinking(CF1),
+  larger_than_CF(CF1),
   solving_problem(CF2),
+  larger_than_CF(CF2),
   work_with_numbers(no),
   maths(yes),
-  larger_than_CF(CF1),
-  larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 90, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
@@ -115,11 +115,11 @@ subject(engineering, CombinedCF,E) :-
 
 subject(engineering, CombinedCF,E) :- 
   science(CF1),
+  larger_than_CF(CF1),
   blogs(science),
   theory_or_pratical(pratical),
   solving_problem(_),
   challenge_yourself(yes),
-  larger_than_CF(CF1),
   calculate_cf([CF1], 90, CombinedCF),
   % Debug
   write_combinedCF(CF1, 100, CombinedCF),
@@ -164,7 +164,7 @@ subject(business, CombinedCF,E) :-
   larger_than_CF(CF2), 
   planning(yes),
   risk(CF3),
-  larger_than_CF(CF2),
+  larger_than_CF(CF3),
   calculate_cf([CF1, CF2, CF3], 100, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
@@ -267,6 +267,7 @@ degree(computer_science) :-
   \+inserted(computer_science),
   assert(inserted(computer_science)),
   assert(describe(computer_science):- ( 
+  nl,nl,
   write('Recommendation: Computer Science '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You are interested in the details of how computer systems or software works.\c
@@ -287,6 +288,7 @@ degree(computer_science) :-
   \+inserted(computer_science),
   assert(inserted(computer_science)),
   assert(describe(computer_science):- (
+  nl,nl,
   write('Recommendation: Computer Science '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You are interested in the details of how computer systems or software works.\c
@@ -306,6 +308,7 @@ degree(computer_science) :-
   \+inserted(computer_science),
   assert(inserted(computer_science)),
   assert(describe(computer_science):- (
+  nl,nl,
   write('Recommendation: Computer Science '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You are interested in the details of how computer systems or software works.\c
@@ -327,6 +330,7 @@ degree(information_technology) :-
   \+inserted(information_technology),
   assert(inserted(information_technology)),
   assert(describe(information_technology):- (
+    nl,nl,
   write('Recommendation: Information Technology '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You are interested to interact with people and like to planning.\c
@@ -343,6 +347,7 @@ degree(information_technology) :-
   \+inserted(information_technology),
   assert(inserted(information_technology)),
   assert(describe(information_technology):- (
+    nl,nl,
   write('Recommendation: Information Technology '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You are suitable for the degree of information technology.'),nl,
@@ -360,6 +365,7 @@ degree(electrical_engineering) :-
   \+inserted(electrical_engineering),
   assert(inserted(electrical_engineering)),
   assert(describe(electrical_engineering):- (
+    nl,nl,
   write('Recommendation: Electrical Engineering '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You like physics and like to deal with circuits. \c
@@ -377,6 +383,7 @@ degree(mechanical_engineering) :-
   \+inserted(mechanical_engineering),
   assert(inserted(mechanical_engineering)),
   assert(describe(mechanical_engineering):- (
+    nl,nl,
   write('Recommendation: Mechanical Engineering '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You like physics. \c
@@ -394,6 +401,7 @@ degree(chemical_engineering) :-
   \+inserted(chemical_engineering),
   assert(inserted(chemical_engineering)),
   assert(describe(chemical_engineering):- (
+    nl,nl,
   write('Recommendation: Chemical Engineering '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You like chemistry. \c
@@ -415,6 +423,7 @@ degree(biotechnology) :-
   \+inserted(biotechnology),
   assert(inserted(biotechnology)),
   assert(describe(biotechnology):- (
+    nl,nl,
   write('Recommendation: Biotechnology '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You like biology and find generic engineering interesting.\c
@@ -432,6 +441,7 @@ degree(pure_science) :-
   \+inserted(pure_science),
   assert(inserted(pure_science)),
   assert(describe(pure_science):- (
+    nl,nl,
   write('Recommendation: Pure Science '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You are suitable for the degree of pure science.'),nl,
@@ -449,6 +459,7 @@ degree(marketing) :-
   \+inserted(marketing),
   assert(inserted(marketing)),
   assert(describe(marketing):- (
+    nl,nl,
   write('Recommendation: Marketing '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You like storytelling.\c
@@ -468,6 +479,7 @@ degree(accounting) :-
   \+inserted(accounting),
   assert(inserted(accounting)),
   assert(describe(accounting):- (
+    nl,nl,
   write('Recommendation: Accounting '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You like working with numbers and you are a detail oriented person.\c
@@ -485,6 +497,7 @@ degree(business_management) :-
   \+inserted(business_management),
   assert(inserted(business_management)),
   assert(describe(business_management):- (
+    nl,nl,
   write('Recommendation: Business Management '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You are suitable for the degree of business management'),nl,
@@ -506,6 +519,7 @@ degree(performing_art) :-
   \+inserted(performing_art),
   assert(inserted(performing_art)),
   assert(describe(performing_art):- (
+    nl,nl,
   write('Recommendation: Performing Art '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You like to become the center of attention and like to perform over film.\c
@@ -526,6 +540,7 @@ degree(digital_film_production) :-
   \+inserted(digital_film_production),
   assert(inserted(digital_film_production)),
   assert(describe(digital_film_production):- (
+    nl,nl,
   write('Recommendation: Digital Film Production '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You like to film over perform.\c
@@ -545,6 +560,7 @@ degree(culinary_art) :-
   \+inserted(culinary_art),
   assert(inserted(culinary_art)),
   assert(describe(culinary_art):- (
+    nl,nl,
   write('Recommendation: Culinary Art '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You enjoy cooking.\c
@@ -562,6 +578,7 @@ degree(hotel_management) :-
   \+inserted(hotel_management),
   assert(inserted(hotel_management)),
   assert(describe(business):- (
+    nl,nl,
   write('Recommendation: Hotel Management '), 
   write('(cf '), write(CF), write(')'), nl,
   write('You are suitable for the degree of hotel management.'),nl,
@@ -587,7 +604,7 @@ larger_than_fifty(CF) :-
   CF>=50.
 
 larger_than_CF(CF):-
-  CF>60.
+  CF>=50.
 
 min_in_list([Min],Min). 
 min_in_list([H,K|T],M) :-
