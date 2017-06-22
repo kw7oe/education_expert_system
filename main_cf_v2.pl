@@ -1,7 +1,9 @@
 main :-
   intro,
   reset_answers,
-  find_degree, nl.
+  find_degree,nl.
+
+intro.
 
 intro :-
   write('Which course should I take?'), nl,
@@ -62,212 +64,194 @@ subject(computing, CombinedCF, E) :-
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
   E = 'You are a logical person and don\'t like physics. \c 
-  However, you are good in maths and solving problems.'.
+  However, you are good in maths and solving problems using computer. \c
+  So, you are suitable for computing subject.'.
 
 subject(computing, CombinedCF, E) :-
-  logical_thinking(CF1),
-  solving_problem(CF2),
+  solving_problem(CF1),
   work_with_numbers(no),
   maths(yes),
   larger_than_CF(CF1),
-  larger_than_CF(CF2),
-  calculate_cf([CF1, CF2], 90, CombinedCF),
-  % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
-  E = 'You are good in maths and solving problems. \c
-  You also prefer to work on a computer.'.
-
-subject(computing, CombinedCF, E) :-
-  logical_thinking(CF1),
-  computer_or_hands(computer),
-  blogs(technology),
   calculate_cf([CF1], 85, CombinedCF),
   % Debug
   write_combinedCF(CF1, 100, CombinedCF),
+  E = 'You are good in maths and solving problems.\c
+  So, you are suitable for computing subject.'.
+
+subject(computing, CombinedCF, E) :-
+  computer_or_hands(computer),
+  blogs(technology),
+  calculate_cf([100], 70, CombinedCF),
+  % Debug
+  write_combinedCF(100, 100, CombinedCF),
   E = 'You perfer working on a computer and like reading \c 
-  blogs related to technology.'.
+  blogs related to technology.\c
+  So, you are suitable for computing subject.'.
 
 subject(engineering, CombinedCF, E) :-
-  logical_thinking(CF1),  
-  larger_than_CF(CF1),
-  science(CF2),
-  larger_than_CF(CF2),
+  logical_thinking(CF1),
+  science(yes),
   theory_or_pratical(pratical),
-  solving_problem(_),
+  solving_problem(CF2),
   challenge_yourself(yes),
   work_with_numbers(yes),
+  larger_than_CF(CF1),
+  larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 100, CombinedCF),
-  % Debug
-  write_combinedCF(CF1, 100, CombinedCF),
-  E = 'You love science \c 
-  and like to work with numbers.'.
+  E = 'You are a logical person and like science. \c
+  You like to do practical stuff and good in solving problems.\c
+  You also like to challenge yourself and work with numbers.\c
+  So, you are suitable for engineering subject.'.
 
 subject(engineering, CombinedCF, E) :- 
-  science(CF1),
+  science(yes),
   blogs(science),
   theory_or_pratical(pratical),
-  solving_problem(_),
+  solving_problem(CF1),
   challenge_yourself(yes),
   larger_than_CF(CF1),
   calculate_cf([CF1], 90, CombinedCF),
-  % Debug
-  write_combinedCF(CF1, 100, CombinedCF),
-  E = 'You love science \c 
-  and like to work with numbers.'.
+  E = 'You love science and like to read blogs related to science.\c
+  You like to do practical stuff and good in solving problems.\c
+  You also like to challenge yourself.\c
+  So, you are suitable for engineering subject.'.
 
 % Subject: Science
 subject(science, CombinedCF, E) :-
   logical_thinking(CF1),
-  larger_than_CF(CF1),
-  science(CF2),  
-  larger_than_CF(CF2),
-  solving_problem(_),
+  science(yes),
+  solving_problem(CF2),
   theory_or_pratical(theory),
   work_with_numbers(yes),
   blogs(science),
-  calculate_cf([CF1, CF2], 100, CombinedCF),
-  % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
-  E = 'You love science, prefer theory \c 
-  and like to work with numbers.'.
+  larger_than_CF(CF1),
+  larger_than_CF(CF2),
+  calculate_cf([CF1, CF2], 90, CombinedCF),
+  E = 'You are a logical person who love science.\c
+  You are good in solving problem and like theory over practical.\c
+  You like to work with numbers and read blogs related to science.\c
+  So, you are suitable for science subject.'.
 
 subject(science, CombinedCF, E) :-
-  science(CF1),  
-  larger_than_CF(CF1),
+  science(yes),
   theory_or_pratical(theory),
-  calculate_cf([CF1], 90, CombinedCF),
-  % Debug
-  write_combinedCF(CF1, 100, CombinedCF),
-  E = 'You love science and prefer theory.'.
+  calculate_cf([100], 80, CombinedCF),
+  E = 'You love science and prefer theory over practical.\c
+  So, you are suitable for science subject.'.
 
 % Subject: Business
 subject(business, CombinedCF, E) :-  
-  like_interact(CF1),   
-  larger_than_CF(CF1),
-  dealing_with_people(CF2),  
-  larger_than_CF(CF2), 
+  like_interact(yes),
+  dealing_with_people(CF1),  
   planning(yes),
-  risk(CF3),
+  risk(CF2),
+  larger_than_CF(CF1),
   larger_than_CF(CF2),
-  calculate_cf([CF1, CF2, CF3], 100, CombinedCF),
-  % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
-  E = 'You are good in planning.'.
+  calculate_cf([CF1, CF2], 80, CombinedCF),
+  E = 'You like to interact with people, dealing with people and like planning.\c
+  You are also a risk taker.\c
+  So, you are suitable for business subject.'.
 
 subject(business, CombinedCF, E) :-
-  like_interact(CF1),
-  larger_than_CF(CF1),
-  dealing_with_people(CF2),  
-  larger_than_CF(CF2),
+  like_interact(yes),
+  dealing_with_people(CF1),
   blogs(business),
   planning(yes),
-  calculate_cf([CF1, CF2], 90, CombinedCF),
-  % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
-  E = 'You like to interact with people.'.
+  larger_than_CF(CF1),
+  calculate_cf([CF1], 80, CombinedCF),
+  E = 'You like to interact and dealing with people.\c
+  You also like to read business blog and planning.\c
+  So, you are suitable for business subject.'.
 
 % Subject: Art
 subject(art, CombinedCF, E) :- 
-  imagination(CF1),  
-  larger_than_CF(CF1),
-  creative_artistic_musical(CF2),
-  larger_than_CF(CF2),
+  imagination(CF1),
+  science(no),
+  creative_artistic_musical(yes),
   work_with_numbers(no),
   going_museum(yes),
-  calculate_cf([CF1, CF2], 100, CombinedCF),
-  % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
-  E = 'You like to interact with people.'.
+  larger_than_CF(CF1),
+  calculate_cf([CF1], 100, CombinedCF),
+  E = 'You are a person who like to imagine and does not like science.\c
+  You are also a creative or artistic or musical person.\c
+  You does not like working with numbers.\c
+  You like going to movie theater or museum.\c
+  So, you are suitable for art subject.'.
 
 subject(art, CombinedCF, E) :-
-  creative_artistic_musical(CF1),
+  science(no),
+  creative_artistic_musical(yes),
   work_with_numbers(no),
-  calculate_cf([CF1], 90, CombinedCF),
-  % Debug
-  write_combinedCF(CF1, 100, CombinedCF),
-  E = 'You like to interact with people.'.
+  calculate_cf([100], 90, CombinedCF),
+  E = 'You does not like science.\c
+  You are a creative or artistic or musical person.\c
+  You does not like working with numbers.\c
+  So, you are suitable for art subject.'.
 
 % Subject: Hospitality
 subject(hospitality, CombinedCF, E) :-
   computer_or_hands(hands),  
   like_interact(yes),  
   planning(yes),
-  service_minded(CF1),
-  serving_people(CF2),
-  calculate_cf([CF1, CF2], 100, CombinedCF),
-  % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
-  E = 'You like to interact with people.'.
+  service_minded(yes),
+  serving_people(yes),
+  calculate_cf([100], 90, CombinedCF),
+  E = 'You prefer to working with hands.\c
+  You like to interact with people and planning.\c
+  You are a service minded person who like to serve people.\c
+  So, you are suitable for hospitality subject.'.
 
 subject(hospitality, CombinedCF, E) :-
   computer_or_hands(hands), 
-  service_minded(CF1),
-  serving_people(CF2),
-  calculate_cf([CF1, CF2], 90, CombinedCF),
-  % Debug
-  write_combinedCF(CF1, CF2, CombinedCF),
-  E = 'You like to interact with people.'.
+  service_minded(yes),
+  serving_people(yes),
+  calculate_cf([100], 90, CombinedCF),
+  E = 'You prefer to working with hands.\c
+  You are a service minded person who like to serve people.\c
+  So, you are suitable for hospitality subject.'.
 
 subject(hospitality, CombinedCF, E) :-
   computer_or_hands(hands),
-  serving_people(CF1),
-  calculate_cf([CF1], 85, CombinedCF),
-  % Debug
-  write_combinedCF(CF1, 100, CombinedCF),
-  E = 'You like to interact with people.'.
+  serving_people(yes),
+  calculate_cf([100], 90, CombinedCF),
+  E = 'You prefer working with hands.\c
+  You like to serve people.\c
+  So, you are suitable for hospitality subject.'.
 
 % Degree: Computer Science
 degree(computer_science) :- 
-  subject(computing, CF1, E),  
-  larger_than_CF(CF1),
-  computer_systems(CF2),  
-  larger_than_CF(CF2),
+  subject(computing, CF1, E),
+  computer_systems(CF2),
   technology(CF3),
+  larger_than_CF(CF1),
+  larger_than_CF(CF2),
   larger_than_CF(CF3),  
   calculate_cf([CF1, CF2, CF3], 100, CF),
   % Debug 
   write_combinedCF(CF1, CF2, CF3, CF),
   nl, write('Recommendation: Computer Science '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
-
-degree(computer_science) :- 
-  subject(computing, CF1, E),  
-  larger_than_CF(CF1),
-  computer_systems(CF2),
-  larger_than_CF(CF2),  
-  calculate_cf([CF1, CF2], 95, CF),
-  % Debug 
-  write_combinedCF(CF1, CF2, CF),
-  nl, write('Recommendation: Computer Science '), 
-  write('(cf '), write(CF), write(')'), nl,
-  write(E).
-
-degree(computer_science) :- 
-  subject(computing, CF1, E),  
-  larger_than_CF(CF1),
-  technology(CF2),
-  larger_than_CF(CF2),  
-  calculate_cf([CF1, CF2], 95, CF),
-  % Debug 
-  write_combinedCF(CF1, CF2, CF),
-  nl, write('Recommendation: Computer Science '), 
-  write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You are interested in the details of how computer systems or software works.\c
+  You also prefer to develop technology rather than apply technology.\c
+  So, you are suitable for the degree of computer science.').
+  
 
 % Degree: Information Technology
 degree(information_technology) :- 
-  subject(computing, CF1, E),  
-  larger_than_CF(CF1),
-  like_interact(CF2),  
-  larger_than_CF(CF2), 
+  subject(computing, CF1, E),
+  like_interact(CF2),
   planning(yes),
+  larger_than_CF(CF1),
+  larger_than_CF(CF2), 
   calculate_cf([CF1, CF2], 100, CF),
   % Debug
   write_combinedCF(CF1, CF2, CF),
   nl, write('Recommendation: Information Technology '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You are interested to interact with people and like to planning.\c
+  So, you are suitable for the degree of information technology.').
 
 degree(information_technology) :-
   subject(computing, CF1, E),
@@ -277,157 +261,152 @@ degree(information_technology) :-
   write_combinedCF(CF1, 100, CF),
   nl, write('Recommendation: Information Technology '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You are suitable for the degree of information technology.').
 
 % Degree: Electrical Engineering
 degree(electrical_engineering) :-
   subject(engineering, CF1, E),
   larger_than_CF(CF1),
-  physics(CF2),
-  larger_than_CF(CF2),
+  physics(yes),
   circuits(yes),
-  calculate_cf([CF1, CF2], 95, CF),
+  calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Electrical Engineering '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like physics and like to deal with circuits. \c
+  You are suitable for the degree of electrical engineering.').
 
 % Degree: Mechanical Engineering
 degree(mechanical_engineering) :-
   subject(engineering, CF1, E),
   larger_than_CF(CF1),
-  physics(CF2),
-  larger_than_CF(CF2),
-  calculate_cf([CF1, CF2], 95, CF),
+  physics(yes),
+  calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Mechanical Engineering '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like physics. \c
+  You are suitable for the degree of mechanical engineering.').
 
 % Degree: Chemical Engineering
 degree(chemical_engineering) :-
   subject(engineering, CF1, E),
   larger_than_CF(CF1),
-  chemistry(CF2),
-  larger_than_CF(CF2),
-  calculate_cf([CF1, CF2], 95, CF),
+  chemistry(yes),
+  calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Chemical Engineering '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like chemistry. \c
+  You are suitable for the degree of chemical engineering.').
 
 % Degree: Biotechnology
 degree(biotechnology) :-
   subject(science, CF1, E),
   larger_than_CF(CF1),
-  biology(CF2),
-  larger_than_CF(CF2),
-  genetic_engineering(CF3),
-  larger_than_CF(CF3),
-  calculate_cf([CF1, CF2, CF3], 95, CF),
-  % Debug 
-  write_combinedCF(CF1, CF2, CF3, CF),
+  biology(yes),
+  genetic_engineering(yes),
+  calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Biotechnology '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like biology and find generic engineering interesting.\c
+  You are suitable for the degree of biotechnology.').
 
 % Degree: Pure Science
 degree(pure_science) :- 
   subject(science, CF1, E),
   larger_than_CF(CF1),
   calculate_cf([CF1], 90, CF),
-  % Debug 
-  write_combinedCF(CF1, 100, CF),
   nl, write('Recommendation: Pure Science '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You are suitable for the degree of pure science.').
 
 % Degree: Marketing
 degree(marketing) :-
   subject(business, CF1, E),
   larger_than_CF(CF1),
-  storytelling(CF2),
-  calculate_cf([CF1, CF2], 100, CF),
-  % Debug 
-  write_combinedCF(CF1, CF2, CF),
+  storytelling(yes),
+  calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Marketing '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like storytelling.\c
+  You are suitable for the degree of marketing.').
 
 % Degree: Accounting
 degree(accounting) :-
   subject(business, CF1, E),
   larger_than_CF(CF1),
   work_with_numbers(yes),
-  detail_oriented(CF2),
-  calculate_cf([CF1, CF2], 100, CF),
-  % Debug 
-  write_combinedCF(CF1, CF2, CF),
+  detail_oriented(yes),
+  calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Accounting '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like working with numbers and you are a detail oriented person.\c
+  You are suitable for the degree of accounting.').
 
 % Degree: Business Management
 degree(business_management) :-
   subject(business, CF1, E),
   larger_than_CF(CF1), 
-  calculate_cf([CF1], 100, CF),
-  % Debug 
-  write_combinedCF(CF1, 100, CF),
+  calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Business Management '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You are suitable for the degree of business management').
 
 % Degree: Performing Art
 degree(performing_art) :-
   subject(art, CF1, E),
-  larger_than_CF(CF1),  
+  larger_than_CF(CF1),
+  center_of_attention(yes),
   film_or_perform(perform),
-  center_of_attention(CF2),
-  larger_than_CF(CF2),
-  performing(CF3),  
-  larger_than_CF(CF3),
-  calculate_cf([CF1, CF2, CF3], 90, CF),
-  % Debug 
-  write_combinedCF(CF1, CF2, CF3, CF),
+  performing(yes),  
+  calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Performing Art '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like to become the center of attention and like to perform over film.\c
+  You are suitable for the degree of performing art.').
 
 % Degree: Digital Film Production
 degree(digital_film_production) :-
   subject(art, CF1, E),
   larger_than_CF(CF1),
   film_or_perform(film),
-  film(CF2),
-  larger_than_CF(CF2),
-  calculate_cf([CF1, CF2], 90, CF),
-  % Debug 
-  write_combinedCF(CF1, CF2, CF),
+  film(yes),  
+  calculate_cf([CF1], 90, CF),
   nl, write('Recommendation: Digital Film Production '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You like to film over perform.\c
+  You are suitable for the degree of digital film production.').
 
 % Degree: Culinary Art
 degree(culinary_art) :- 
   subject(hospitality, CF1, E),
   larger_than_CF(CF1),
-  cook(CF2),  
-  larger_than_CF(CF2),
-  calculate_cf([CF1, CF2], 100, CF),
-  % Debug 
-  write_combinedCF(CF1, CF2, CF),
+  cook(yes),  
+  calculate_cf([CF1], 100, CF),
   nl, write('Recommendation: Culinary Art '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You enjoy cooking.\c
+  You are suitable for the degree of culinary art.').
 
 % Degree: Hotel Management
 degree(hotel_management) :- 
   subject(hospitality, CF1, E),  
   larger_than_CF(CF1),
   calculate_cf([CF1], 100, CF),
-  % Debug 
-  write_combinedCF(CF1, 100, CF),
   nl, write('Recommendation: Hotel Management '), 
   write('(cf '), write(CF), write(')'), nl,
-  write(E).
+  write(E),nl,
+  write('You are suitable for the degree of hotel management.').
 
 % Degree: Gap Year
 degree(gap_year) :-
@@ -442,10 +421,7 @@ degree(gap_year) :-
 calculate_cf(CFList, CF, RulesCF) :-
   min_in_list(CFList, Min), !,
   RulesCF is div(Min * CF, 100),
-  larger_than_fifty(RulesCF).
-
-larger_than_fifty(CF) :-
-  CF>=50.
+  larger_than_CF(RulesCF).
 
 larger_than_CF(CF):-
   CF>60.
@@ -463,6 +439,10 @@ min_in_list([H,K|T],M) :-
 % =========
 
 % CF 100
+question(science) :-
+  nl, write('Do you like Chemistry/Biology/Physics?'), nl.
+question(physics) :-
+  nl, write('Do you enjoy doing Physics?'), nl.
 question(maths) :-
   nl, write('Are you good at Maths?'), nl.
 question(computer_or_hands) :-
@@ -477,14 +457,19 @@ question(challenge_yourself) :-
   nl, write('Do you like to challenge yourself?'), nl.
 question(planning) :-
   nl, write('Do you like planning, organising or managing?'), nl.
+question(creative_artistic_musical) :-
+  nl, write('Are you creative or artistic or musical?'), nl.
 question(going_museum) :-
   nl, write('Do you enjoy going to movie theater and museums?'), nl.
-
+question(service_minded) :-
+  nl, write('Are you service minded with a high stress threshold and want to work with people?'), nl.
+question(serving_people) :-
+  nl, write('I dont mind serving people.'), nl.
 
 % CF Unknown
 question(logic) :-
   nl, write('Are you a person of logic?'), nl.
-question(imagination) :-
+question(imaginatiion) :-
   nl, write('Are you a person of imagination?'), nl.
 question(rational) :-
   nl, write('Are u a rational person?'), nl.
@@ -498,16 +483,6 @@ question(dealing_with_people) :-
   write('How good are you in dealing with people?'), nl.
 question(like_interact) :-
   nl, write('I like interacting with people.'), nl.
-question(science) :-
-  nl, write('I like Chemistry/Biology/Physics.'), nl.
-question(physics) :-
-  nl, write('I enjoy doing Physics.'), nl.
-question(creative_artistic_musical) :-
-  nl, write('I am creative/artistic/musical.'), nl.
-question(service_minded) :-
-  nl, write('Are you service minded with a high stress threshold and want to work with people?'), nl.
-question(serving_people) :-
-  nl, write('I dont mind serving people.'), nl.
 
 % Computer Science
 question(computer_systems) :-
@@ -519,19 +494,19 @@ question(technology) :-
 question(circuits) :-
   nl, write('Do you like to deal with circuits?'), nl.
 question(chemistry) :-
-  nl, write('I like Chemistry.'), nl.
+  nl, write('Do you like Chemistry?'), nl.
 
 % Question for Science 
 question(biology) :-
-  nl, write('I like Biology.'), nl.
+  nl, write('Do you like Biology?'), nl.
 question(genetic_engineering) :-
-  nl, write('I find genetic engineering intersting.'), nl.
+  nl, write('Do you find genetic engineering intersting?'), nl.
 
 % Question for Business
 question(detail_oriented) :-
-  nl, write('I am detail oriented and pay attention to little things.'), nl.
+  nl, write('Are you detail oriented and pay attention to little things?'), nl.
 question(storytelling) :-
-  nl, write('I am good at storytelling.'), nl.
+  nl, write('Are you good at storytelling?'), nl.
 
 % Question for Arts
 question(center_of_attention) :-
@@ -539,7 +514,7 @@ question(center_of_attention) :-
 question(film_or_perform) :-
   nl, write('Do you prefer shooting film or performing?'), nl.
 question(film) :-
-  nl, write('I am interested in the arts of storytelling and the language of film.'), nl.
+  nl, write('Are you interested in the arts of storytelling and the language of film?'), nl.
 question(performing) :-
   nl, write('I prefer to convey artistic expression through acting/dancing/singing.'), nl.
 
@@ -592,6 +567,21 @@ answer(strongly_agree) :-
 % ==========================
 % Assign Answer to Questions
 % ==========================
+science(Answer) :-
+  progress(science, Answer).
+science(Answer) :-
+  \+ progress(science, _),
+  ask(science, Answer, [yes, no]).
+physics(Answer) :-
+  progress(physics, Answer).
+physics(Answer) :-
+  \+ progress(physics, _),
+  ask(physics, Answer, [yes, no]).
+biology(Answer) :-
+  progress(biology, Answer).
+biology(Answer) :-
+  \+ progress(biology, _),
+  ask(biology, Answer, [yes, no]).
 maths(Answer) :-
   progress(maths, Answer).
 maths(Answer) :-
@@ -627,31 +617,29 @@ planning(Answer) :-
 planning(Answer) :-
   \+ progress(planning, _),
   ask(planning, Answer, [yes, no]).
+serving_people(Answer) :-
+  progress(serving_people, Answer).
+serving_people(Answer) :-
+  \+ progress(serving_people, _),
+  ask(serving_people, Answer, [yes, no]).
+service_minded(Answer) :-
+  progress(service_minded, Answer).
+service_minded(Answer) :-
+  \+ progress(service_minded, _),
+  ask(service_minded, Answer, [yes, no]).
+creative_artistic_musical(Answer) :-
+  progress(creative_artistic_musical, Answer).
+creative_artistic_musical(Answer) :-
+  \+ progress(creative_artistic_musical, _),
+  ask(creative_artistic_musical, Answer, [yes, no]).
+
 going_museum(Answer) :-
   progress(going_museum, Answer).
 going_museum(Answer) :-
   \+ progress(going_museum, _),
   ask(going_museum, Answer, [yes, no]).
 
-% Computing 
-computer_systems(Answer) :-
-  progress(computer_systems, Answer).
-computer_systems(Answer) :-
-  \+ progress(computer_systems, _),
-  ask_with_cf(computer_systems, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
-
-technology(Answer) :-
-  progress(technology, Answer).
-technology(Answer) :-
-  \+ progress(technology, _),
-  ask_with_cf(technology, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
-
 % Engineering
-physics(Answer) :-
-  progress(physics, Answer).
-physics(Answer) :-
-  \+ progress(physics, _),
-  ask_with_cf(physics, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
 circuits(Answer) :-
   progress(circuits, Answer).
 circuits(Answer) :-
@@ -659,59 +647,31 @@ circuits(Answer) :-
   ask(circuits, Answer, [yes, no]).
 
 % Science
-science(Answer) :-
-  progress(science, Answer).
-science(Answer) :-
-  \+ progress(science, _),
-  ask_with_cf(science, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
-biology(Answer) :-
-  progress(biology, Answer).
-biology(Answer) :-
-  \+ progress(biology, _),
-  ask_with_cf(biology, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
-chemistry(Answer) :-
-  progress(chemistry, Answer).
-chemistry(Answer) :-
-  \+ progress(chemistry, _),
-  ask_with_cf(chemistry, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
-
 genetic_engineering(Answer) :-
   progress(genetic_engineering, Answer).
 genetic_engineering(Answer) :-
   \+ progress(genetic_engineering, _),
-  ask_with_cf(genetic_engineering, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
+  ask(genetic_engineering, Answer, [yes, no]).
 
 % Business
-risk(Answer) :-
-  progress(risk, Answer).
-risk(Answer) :-
-  \+ progress(risk, _),
-  ask_with_cf(risk, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
-
 storytelling(Answer) :-
   progress(storytelling, Answer).
 storytelling(Answer) :-
   \+ progress(storytelling, _),
-  ask_with_cf(storytelling, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
+  ask(storytelling, Answer, [yes, no]).
 
 detail_oriented(Answer) :-
   progress(detail_oriented, Answer).
 detail_oriented(Answer) :-
   \+ progress(detail_oriented, _),
-  ask_with_cf(detail_oriented, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
+  ask(detail_oriented, Answer, [yes, no]).
 
 % Art
-creative_artistic_musical(Answer) :-
-  progress(creative_artistic_musical, Answer).
-creative_artistic_musical(Answer) :-
-  \+ progress(creative_artistic_musical, _),
-  ask_with_cf(creative_artistic_musical, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
-
 center_of_attention(Answer) :-
   progress(center_of_attention, Answer).
 center_of_attention(Answer) :-
   \+ progress(center_of_attention, _),
-  ask_with_cf(center_of_attention, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
+  ask(center_of_attention, Answer, [yes, no]).
 
 film_or_perform(Answer) :-
   progress(film_or_perform, Answer).
@@ -723,32 +683,21 @@ film(Answer) :-
   progress(film, Answer).
 film(Answer) :-
   \+ progress(film, _),
-  ask_with_cf(film, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]). 
+  ask(film, Answer, [yes, no]). 
 
 performing(Answer) :-
   progress(performing, Answer).
 performing(Answer) :-
   \+ progress(performing, _),
-  ask_with_cf(performing, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]). 
+  ask(performing, Answer, [yes, no]). 
 
 % Hospitality
-serving_people(Answer) :-
-  progress(serving_people, Answer).
-serving_people(Answer) :-
-  \+ progress(serving_people, _),
-  ask_with_cf(serving_people, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
-service_minded(Answer) :-
-  progress(service_minded, Answer).
-service_minded(Answer) :-
-  \+ progress(service_minded, _),
-  ask_with_cf(service_minded, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
 cook(Answer) :-
   progress(cook, Answer).
 cook(Answer) :-
   \+ progress(cook, _),
-  ask_with_cf(cook, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
+  ask(cook, Answer, [yes, no]).
 
-% CF 
 logic(Answer) :-
   progress(logic, Answer).
 logic(Answer) :-
@@ -771,21 +720,37 @@ solving_problem(Answer) :-
   progress(solving_problem, Answer).
 solving_problem(Answer) :-
   \+ progress(solving_problem, _),
-  ask_with_cf(solving_problem, Answer, []).  
+  ask_with_cf(solving_problem, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).  
+
+computer_systems(Answer) :-
+  progress(computer_systems, Answer).
+computer_systems(Answer) :-
+  \+ progress(computer_systems, _),
+  ask_with_cf(computer_systems, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
+
+technology(Answer) :-
+  progress(technology, Answer).
+technology(Answer) :-
+  \+ progress(technology, _),
+  ask_with_cf(technology, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
+
+risk(Answer) :-
+  progress(risk, Answer).
+risk(Answer) :-
+  \+ progress(risk, _),
+  ask_with_cf(risk, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
 
 dealing_with_people(Answer) :-
   progress(dealing_with_people, Answer).
 dealing_with_people(Answer) :-
   \+ progress(dealing_with_people, _),
-  ask_with_cf(dealing_with_people, Answer, []).
+  ask_with_cf(dealing_with_people, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
 
 like_interact(Answer) :-
   progress(like_interact, Answer).
 like_interact(Answer) :-
   \+ progress(like_interact, _),
   ask_with_cf(like_interact, Answer, [strongly_disagree, disagree, neutral, agree, strongly_agree]).
-
-
 % Outputs a nicely formatted list of answers
 % [First|Rest] is the Choices list, Index is the index of First in Choices
 answers([], _).
