@@ -315,7 +315,7 @@ degree(computer_science) :-
   write('- Network Specialist'),nl,
   write('- Research Analyst'),nl,
   write('- Software Quality Assurance Officer'),nl,
-  write('- Enterprise Distributed Application Developer')).
+  write('- Enterprise Distributed Application Developer'))).
 
 degree(computer_science) :- 
   subject(computing, CF1,E),  
