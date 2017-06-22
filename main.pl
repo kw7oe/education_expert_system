@@ -1,8 +1,7 @@
 main :-
   intro,
   reset_answers,
-  find_degree(Degree),
-  describe(Degree), nl.
+  find_degree(Degree).
 
 intro :-
   write('Which course should I take?'), nl,
@@ -889,83 +888,7 @@ cook(Answer) :-
   \+ progress(cook, _),
   ask(cook, Answer, [yes, no]).
 
-% ============
-% Explaination
-% ============
 
-% Language descriptions for the knowledge base
-describe(computer_science) :-
-  write('Computer Science'), nl,
-  write('Widely regarded as the best programming language for beginners'), nl,
-  write('Easiest to learn').
-
-describe(information_technology) :-
-  write('Information Technology'), nl,
-  write('Widely regarded as the best programming language for beginners'), nl,
-  write('Easiest to learn').
-
-describe(electrical_engineering) :-
-  write('Electrical Engineering'), nl,
-  write('Widely regarded as the best programming language for beginners'), nl,
-  write('Easiest to learn').
-
-describe(mechanical_engineering) :-
-  write('Mechanical Engineering'), nl,
-  write('Widely regarded as the best programming language for beginners'), nl,
-  write('Easiest to learn').
-
-describe(chemical_engineering) :-
-  write('Chemical Engineering'), nl,
-  write('Widely regarded as the best programming language for beginners'), nl,
-  write('Easiest to learn').
-
-describe(biotechnology) :-
-  write('Biotechnology'), nl,
-  write('Widely regarded as the best programming language for beginners'), nl,
-  write('Easiest to learn').
-
-describe(pure_science) :-
-  write('Pure Science'), nl,
-  write('Widely regarded as the best programming language for beginners'), nl,
-  write('Easiest to learn').
-
-describe(marketing) :-
-  write('Marketing'), nl,
-  write('Widely regarded as the best programming language for beginners'), nl,
-  write('Easiest to learn').
-
-describe(accounting) :-
-  write('Accounting'), nl,
-  write('Widely regarded as the best programming language for beginners'), nl,
-  write('Easiest to learn').
-
-describe(business_management) :-
-  write('Business Management'), nl,
-  write('One of the most in demand & highest paying programming languages'), nl,
-  write('Slogan: write once, work everywhere').
-
-describe(performing_art) :-
-  write('Performing Art'), nl,
-  write('One of the most in demand & highest paying programming languages'), nl,
-  write('Slogan: write once, work everywhere').
-
-describe(digital_film_production) :-
-  write('Digital Film Production'), nl,
-  write('One of the most in demand & highest paying programming languages'), nl,
-  write('Slogan: write once, work everywhere').
-
-describe(culinary_art) :-
-  write('Culinary Art'), nl,
-  write('One of the most in demand & highest paying programming languages'), nl,
-  write('Slogan: write once, work everywhere').
-
-describe(hotel_management) :-
-  write('Hotel Management'), nl,
-  write('One of the most in demand & highest paying programming languages'), nl,
-  write('Slogan: write once, work everywhere').
-
-describe(gap_year) :-
-  write('Gap Year'), nl.
 
 % Outputs a nicely formatted list of answers
 % [First|Rest] is the Choices list, Index is the index of First in Choices
