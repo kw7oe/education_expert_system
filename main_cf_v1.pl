@@ -1,30 +1,22 @@
 main :-
   intro,
   reset_answers,
-  find_degree,
-  describe_all.
+  find_degree, nl.
 
 intro :-
   write('Which course should I take?'), nl,
   write('To answer, input the number shown next to each answer, followed by a dot (.)'), nl, nl.
 
-find_degree:-
-    degree(_),fail.
-
-find_degree:-
-    true.
+find_degree :-
+  degree(_), !.
 
 % Store user answers to be able to track his progress
 :- dynamic(progress/2).
-:- dynamic(inserted/1).
-:- dynamic(describe/1).
 
 % Clear stored user progress
 % reset_answers must always return true; because retract can return either true
 % or false, we fail the first and succeed with the second.
 reset_answers :-
-  retractall(inserted(_)),
-  retractall(describe(_)),
   retract(progress(_, _)),
   fail.
 reset_answers.
@@ -57,46 +49,45 @@ write_combinedCF(CF1, CF2, CF3, CombinedCF) :-
 % =======
 % Subject
 % =======
-subject(computing, CombinedCF,E) :-
+subject(computing, CombinedCF, E) :-
   logical_thinking(CF1),
-  larger_than_CF(CF1),
+  physics(no),
   solving_problem(CF2),
-  larger_than_CF(CF2),
   computer_or_hands(computer),
   work_with_numbers(yes),
   maths(yes),
+  larger_than_CF(CF1),
+  larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
-  E='You are a logical person. \c 
-  You are also good in maths and solving problems using computer. \c
-  So, you are suitable for computing subject.'.
+  E = 'You are a logical person and don\'t like physics. \c 
+  However, you are good in maths and solving problems.'.
 
-subject(computing, CombinedCF,E) :-
+subject(computing, CombinedCF, E) :-
   logical_thinking(CF1),
-  larger_than_CF(CF1),
   solving_problem(CF2),
-  larger_than_CF(CF2),
   work_with_numbers(no),
   maths(yes),
+  larger_than_CF(CF1),
+  larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 90, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
-  E='You are good in maths and solving problems.\c
-  So, you are suitable for computing subject.'.
+  E = 'You are good in maths and solving problems. \c
+  You also prefer to work on a computer.'.
 
-subject(computing, CombinedCF,E) :-
+subject(computing, CombinedCF, E) :-
   logical_thinking(CF1),
   computer_or_hands(computer),
   blogs(technology),
   calculate_cf([CF1], 85, CombinedCF),
   % Debug
   write_combinedCF(CF1, 100, CombinedCF),
-  E='You perfer working on a computer and like reading \c 
-  blogs related to technology.\c
-  So, you are suitable for computing subject.'.
+  E = 'You perfer working on a computer and like reading \c 
+  blogs related to technology.'.
 
-subject(engineering, CombinedCF,E) :-
+subject(engineering, CombinedCF, E) :-
   logical_thinking(CF1),  
   larger_than_CF(CF1),
   science(CF2),
@@ -108,28 +99,24 @@ subject(engineering, CombinedCF,E) :-
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
   write_combinedCF(CF1, 100, CombinedCF),
-  E='You are a logical person and like science. \c
-  You like to do practical stuff and good in solving problems.\c
-  You also like to challenge yourself and work with numbers.\c
-  So, you are suitable for engineering subject.'.
+  E = 'You love science \c 
+  and like to work with numbers.'.
 
-subject(engineering, CombinedCF,E) :- 
+subject(engineering, CombinedCF, E) :- 
   science(CF1),
-  larger_than_CF(CF1),
   blogs(science),
   theory_or_pratical(pratical),
   solving_problem(_),
   challenge_yourself(yes),
+  larger_than_CF(CF1),
   calculate_cf([CF1], 90, CombinedCF),
   % Debug
   write_combinedCF(CF1, 100, CombinedCF),
-  E='You love science and like to read blogs related to science.\c
-  You like to do practical stuff and good in solving problems.\c
-  You also like to challenge yourself.\c
-  So, you are suitable for engineering subject.'.
+  E = 'You love science \c 
+  and like to work with numbers.'.
 
 % Subject: Science
-subject(science, CombinedCF,E) :-
+subject(science, CombinedCF, E) :-
   logical_thinking(CF1),
   larger_than_CF(CF1),
   science(CF2),  
@@ -141,38 +128,33 @@ subject(science, CombinedCF,E) :-
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
-  E='You are a logical person who love science.\c
-  You are good in solving problem and like theory over practical.\c
-  You like to work with numbers and read blogs related to science.\c
-  So, you are suitable for science subject.'.
+  E = 'You love science, prefer theory \c 
+  and like to work with numbers.'.
 
-subject(science, CombinedCF,E) :-
+subject(science, CombinedCF, E) :-
   science(CF1),  
   larger_than_CF(CF1),
   theory_or_pratical(theory),
   calculate_cf([CF1], 90, CombinedCF),
   % Debug
   write_combinedCF(CF1, 100, CombinedCF),
-  E='You love science and prefer theory over practical.\c
-  So, you are suitable for science subject.'.
+  E = 'You love science and prefer theory.'.
 
 % Subject: Business
-subject(business, CombinedCF,E) :-  
+subject(business, CombinedCF, E) :-  
   like_interact(CF1),   
   larger_than_CF(CF1),
   dealing_with_people(CF2),  
   larger_than_CF(CF2), 
   planning(yes),
   risk(CF3),
-  larger_than_CF(CF3),
+  larger_than_CF(CF2),
   calculate_cf([CF1, CF2, CF3], 100, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
-  E='You like to interact with people, dealing with people and like planning.\c
-  You are also a risk taker.\c
-  So, you are suitable for business subject.'.
+  E = 'You are good in planning.'.
 
-subject(business, CombinedCF,E) :-
+subject(business, CombinedCF, E) :-
   like_interact(CF1),
   larger_than_CF(CF1),
   dealing_with_people(CF2),  
@@ -182,12 +164,10 @@ subject(business, CombinedCF,E) :-
   calculate_cf([CF1, CF2], 90, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
-  E='You like to interact and dealing with people.\c
-  You also like to read business blog and planning.\c
-  So, you are suitable for business subject.'.
+  E = 'You like to interact with people.'.
 
 % Subject: Art
-subject(art, CombinedCF,E) :- 
+subject(art, CombinedCF, E) :- 
   imagination(CF1),  
   larger_than_CF(CF1),
   creative_artistic_musical(CF2),
@@ -197,27 +177,18 @@ subject(art, CombinedCF,E) :-
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
-  E='You are a person who like to imagine and does not like science.\c
-  You are also a creative or artistic or musical person.\c
-  You does not like working with numbers.\c
-  You like going to movie theater or museum.\c
-  So, you are suitable for art subject.'.
+  E = 'You like to interact with people.'.
 
-
-subject(art, CombinedCF,E) :-
+subject(art, CombinedCF, E) :-
   creative_artistic_musical(CF1),
   work_with_numbers(no),
   calculate_cf([CF1], 90, CombinedCF),
   % Debug
   write_combinedCF(CF1, 100, CombinedCF),
-  E='You does not like science.\c
-  You are a creative or artistic or musical person.\c
-  You does not like working with numbers.\c
-  So, you are suitable for art subject.'.
-
+  E = 'You like to interact with people.'.
 
 % Subject: Hospitality
-subject(hospitality, CombinedCF,E) :-
+subject(hospitality, CombinedCF, E) :-
   computer_or_hands(hands),  
   like_interact(yes),  
   planning(yes),
@@ -226,35 +197,28 @@ subject(hospitality, CombinedCF,E) :-
   calculate_cf([CF1, CF2], 100, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
-  E='You prefer to working with hands.\c
-  You like to interact with people and planning.\c
-  You are a service minded person who like to serve people.\c
-  So, you are suitable for hospitality subject.'.
+  E = 'You like to interact with people.'.
 
-subject(hospitality, CombinedCF,E) :-
+subject(hospitality, CombinedCF, E) :-
   computer_or_hands(hands), 
   service_minded(CF1),
   serving_people(CF2),
   calculate_cf([CF1, CF2], 90, CombinedCF),
   % Debug
   write_combinedCF(CF1, CF2, CombinedCF),
-  E='You prefer to working with hands.\c
-  You are a service minded person who like to serve people.\c
-  So, you are suitable for hospitality subject.'.
+  E = 'You like to interact with people.'.
 
-subject(hospitality, CombinedCF,E) :-
+subject(hospitality, CombinedCF, E) :-
   computer_or_hands(hands),
   serving_people(CF1),
   calculate_cf([CF1], 85, CombinedCF),
   % Debug
   write_combinedCF(CF1, 100, CombinedCF),
-  E='You prefer working with hands.\c
-  You like to serve people.\c
-  So, you are suitable for hospitality subject.'.
+  E = 'You like to interact with people.'.
 
 % Degree: Computer Science
 degree(computer_science) :- 
-  subject(computing, CF1,E),  
+  subject(computing, CF1, E),  
   larger_than_CF(CF1),
   computer_systems(CF2),  
   larger_than_CF(CF2),
@@ -263,101 +227,37 @@ degree(computer_science) :-
   calculate_cf([CF1, CF2, CF3], 100, CF),
   % Debug 
   write_combinedCF(CF1, CF2, CF3, CF),
-  nl,
-  \+inserted(computer_science),
-  assert(inserted(computer_science)),
-  assert(describe(computer_science):- ( 
-  nl,nl,
-  write('Recommendation: Computer Science '), 
-  write('(cf '), 
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You are interested in the details of how computer systems or software works.\c
-  You also prefer to develop technology rather than apply technology.\c
-  So, you are suitable for the degree of computer science.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Chief Technology Officer'),nl,
-  write('- Software Engineer / Software Architect'),nl,
-  write('- Mobile App Developer'),nl,
-  write('- Game Developer'),nl,
-  write('- System Designer'),nl,
-  write('- Network Specialist'),nl,
-  write('- Research Analyst'),nl,
-  write('- Software Quality Assurance Officer'),nl,
-  write('- Enterprise Distributed Application Developer'))).
-
+  nl, write('Recommendation: Computer Science '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 degree(computer_science) :- 
-  subject(computing, CF1,E),  
+  subject(computing, CF1, E),  
   larger_than_CF(CF1),
   computer_systems(CF2),
   larger_than_CF(CF2),  
   calculate_cf([CF1, CF2], 95, CF),
   % Debug 
   write_combinedCF(CF1, CF2, CF),
-  nl,
-  \+inserted(computer_science),
-  assert(inserted(computer_science)),
-  assert(describe(computer_science):- (
-  nl,nl,
-  write('Recommendation: Computer Science '), 
-  write('(cf '), 
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You are interested in the details of how computer systems or software works.\c
-  You also prefer to develop technology rather than apply technology.\c
-  So, you are suitable for the degree of computer science.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Chief Technology Officer'),nl,
-  write('- Software Engineer / Software Architect'),nl,
-  write('- Mobile App Developer'),nl,
-  write('- Game Developer'),nl,
-  write('- System Designer'),nl,
-  write('- Network Specialist'),nl,
-  write('- Research Analyst'),nl,
-  write('- Software Quality Assurance Officer'),nl,
-  write('- Enterprise Distributed Application Developer'))).
+  nl, write('Recommendation: Computer Science '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 degree(computer_science) :- 
-  subject(computing, CF1,E),  
+  subject(computing, CF1, E),  
   larger_than_CF(CF1),
   technology(CF2),
   larger_than_CF(CF2),  
   calculate_cf([CF1, CF2], 95, CF),
   % Debug 
   write_combinedCF(CF1, CF2, CF),
-  nl, 
-  \+inserted(computer_science),
-  assert(inserted(computer_science)),
-  assert(describe(computer_science):- (
-  nl,nl,
-  write('Recommendation: Computer Science '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You are interested in the details of how computer systems or software works.\c
-  You also prefer to develop technology rather than apply technology.\c
-  So, you are suitable for the degree of computer science.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Chief Technology Officer'),nl,
-  write('- Software Engineer / Software Architect'),nl,
-  write('- Mobile App Developer'),nl,
-  write('- Game Developer'),nl,
-  write('- System Designer'),nl,
-  write('- Network Specialist'),nl,
-  write('- Research Analyst'),nl,
-  write('- Software Quality Assurance Officer'),nl,
-  write('- Enterprise Distributed Application Developer'))).
+  nl, write('Recommendation: Computer Science '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Information Technology
 degree(information_technology) :- 
-  subject(computing, CF1,E),  
+  subject(computing, CF1, E),  
   larger_than_CF(CF1),
   like_interact(CF2),  
   larger_than_CF(CF2), 
@@ -365,140 +265,57 @@ degree(information_technology) :-
   calculate_cf([CF1, CF2], 100, CF),
   % Debug
   write_combinedCF(CF1, CF2, CF),
-  nl, 
-  \+inserted(information_technology),
-  assert(inserted(information_technology)),
-  assert(describe(information_technology):- (
-    nl,nl,
-  write('Recommendation: Information Technology '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You are interested to interact with people and like to planning.\c
-  So, you are suitable for the degree of information technology.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- IT Specialist'),nl,
-  write('- Network Specialist'),nl,
-  write('- System Engineer'),nl,
-  write('- Web / E-Commerce Architect'),nl,
-  write('- Database Architect'),nl,
-  write('- IT Infrastructure Engineer'))).
+  nl, write('Recommendation: Information Technology '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 degree(information_technology) :-
-  subject(computing, CF1,E),
+  subject(computing, CF1, E),
   larger_than_CF(CF1),
   calculate_cf([CF1], 70, CF),
   % Debug
   write_combinedCF(CF1, 100, CF),
-  nl, 
-  \+inserted(information_technology),
-  assert(inserted(information_technology)),
-  assert(describe(information_technology):- (
-    nl,nl,
-  write('Recommendation: Information Technology '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You are suitable for the degree of information technology.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- IT Specialist'),nl,
-  write('- Network Specialist'),nl,
-  write('- System Engineer'),nl,
-  write('- Web / E-Commerce Architect'),nl,
-  write('- Database Architect'),nl,
-  write('- IT Infrastructure Engineer'))).
+  nl, write('Recommendation: Information Technology '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Electrical Engineering
 degree(electrical_engineering) :-
-  subject(engineering, CF1,E),
+  subject(engineering, CF1, E),
   larger_than_CF(CF1),
   physics(CF2),
   larger_than_CF(CF2),
   circuits(yes),
   calculate_cf([CF1, CF2], 95, CF),
-  nl,
-  \+inserted(electrical_engineering),
-  assert(inserted(electrical_engineering)),
-  assert(describe(electrical_engineering):- (
-    nl,nl,
-  write('Recommendation: Electrical Engineering '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You like physics and like to deal with circuits. \c
-  You are suitable for the degree of electrical engineering.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Electrical or Electronic Engineer'),nl,
-  write('- Design Manager in Designing'),nl,
-  write('- Maintenance of Electrical Power System, Electricity Generation, Transmission, Distribution, Utilisation'),nl,
-  write('- Electronic System for Operational Safety/Efficiency or Designing Renewable Energy System'))).
+  nl, write('Recommendation: Electrical Engineering '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Mechanical Engineering
 degree(mechanical_engineering) :-
-  subject(engineering, CF1,E),
+  subject(engineering, CF1, E),
   larger_than_CF(CF1),
   physics(CF2),
   larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 95, CF),
-  nl,
-  \+inserted(mechanical_engineering),
-  assert(inserted(mechanical_engineering)),
-  assert(describe(mechanical_engineering):- (
-    nl,nl,
-  write('Recommendation: Mechanical Engineering '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You like physics. \c
-  You are suitable for the degree of mechanical engineering.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Mechanical Engineer'),nl,
-  write('- Production Engineer'),nl,
-  write('- Failure Analyst Engineer'),nl,
-  write('- M&E Engineer'),nl,
-  write('- QC Engineer'),nl,
-  write('- Manufacturing Engineer'),nl,
-  write('- R&D Engineer'),nl,
-  write('- Design Engineer'),nl,
-  write('- Product Engineer'))).
+  nl, write('Recommendation: Mechanical Engineering '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Chemical Engineering
 degree(chemical_engineering) :-
-  subject(engineering, CF1,E),
+  subject(engineering, CF1, E),
   larger_than_CF(CF1),
   chemistry(CF2),
   larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 95, CF),
-  nl,
-  \+inserted(chemical_engineering),
-  assert(inserted(chemical_engineering)),
-  assert(describe(chemical_engineering):- (
-    nl,nl,
-  write('Recommendation: Chemical Engineering '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You like chemistry. \c
-  You are suitable for the degree of chemical engineering.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Process Engineer'),nl,
-  write('- Quality Assurance Engineer'),nl,
-  write('- Chemical & Biochemical Engineer'),nl,
-  write('- Contamination Engineer'))).
+  nl, write('Recommendation: Chemical Engineering '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Biotechnology
 degree(biotechnology) :-
-  subject(science, CF1,E),
+  subject(science, CF1, E),
   larger_than_CF(CF1),
   biology(CF2),
   larger_than_CF(CF2),
@@ -507,165 +324,60 @@ degree(biotechnology) :-
   calculate_cf([CF1, CF2, CF3], 95, CF),
   % Debug 
   write_combinedCF(CF1, CF2, CF3, CF),
-  nl,
-  \+inserted(biotechnology),
-  assert(inserted(biotechnology)),
-  assert(describe(biotechnology):- (
-    nl,nl,
-  write('Recommendation: Biotechnology '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You like biology and find generic engineering interesting.\c
-  You are suitable for the degree of biotechnology.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Pharmaceutical Research & Development'),nl,
-  write('- Pharmaceutical Marketing Director'),nl,
-  write('- Clinical Trial Manager'),nl,
-  write('- Clinical Research Scientist'),nl,
-  write('- Biomedical & Biotechnology Research Scientist'),nl,
-  write('- Medical & Scientific Product Specialist'),nl,
-  write('- Medical Laboratories Director'),nl,
-  write('- Academia (Science Educator)')
-  )).
+  nl, write('Recommendation: Biotechnology '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Pure Science
 degree(pure_science) :- 
-  subject(science, CF1,E),
+  subject(science, CF1, E),
   larger_than_CF(CF1),
   calculate_cf([CF1], 90, CF),
   % Debug 
   write_combinedCF(CF1, 100, CF),
-  nl,
-  \+inserted(pure_science),
-  assert(inserted(pure_science)),
-  assert(describe(pure_science):- (
-    nl,nl,
-  write('Recommendation: Pure Science '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You are suitable for the degree of pure science.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Analytical/Biomedical chemist'),nl,
-  write('- Biotechnologist'),nl,
-  write('- Quality controller'),nl,
-  write('- Science journalist'),nl,
-  write('- Process control specialist')
-)).
+  nl, write('Recommendation: Pure Science '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Marketing
 degree(marketing) :-
-  subject(business, CF1,E),
+  subject(business, CF1, E),
   larger_than_CF(CF1),
   storytelling(CF2),
   calculate_cf([CF1, CF2], 100, CF),
   % Debug 
   write_combinedCF(CF1, CF2, CF),
-  nl, 
-  \+inserted(marketing),
-  assert(inserted(marketing)),
-  assert(describe(marketing):- (
-    nl,nl,
-  write('Recommendation: Marketing '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You like storytelling.\c
-  You are suitable for the degree of marketing.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Chief Executive Officer'),nl,
-  write('- Chief Marketing Officer'),nl,
-  write('- Advertising and Promotions Specialist'),nl,
-  write('- Product Manager'),nl,
-  write('- Brand Manager'),nl,
-  write('- Marketing Consultant'),nl,
-  write('- Management Consultant'),nl,
-  write('- Retail Expert'),nl,
-  write('- Customer Relationship Associate / Manager'),nl,
-  write('- Supply Chain Manager'),nl,
-  write('- Key Accounts Specialist / Manager'),nl,
-  write('- Consumer Research Analyst / Manager'),nl,
-  write('- Events Producer')
-  )).
+  nl, write('Recommendation: Marketing '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Accounting
 degree(accounting) :-
-  subject(business, CF1,E),
+  subject(business, CF1, E),
   larger_than_CF(CF1),
   work_with_numbers(yes),
   detail_oriented(CF2),
   calculate_cf([CF1, CF2], 100, CF),
   % Debug 
   write_combinedCF(CF1, CF2, CF),
-  nl, 
-  \+inserted(accounting),
-  assert(inserted(accounting)),
-  assert(describe(accounting):- (
-    nl,nl,
-  write('Recommendation: Accounting '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You like working with numbers and you are a detail oriented person.\c
-  You are suitable for the degree of accounting.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Chief Financial Officer'),nl,
-  write('- Investment Banker'),nl,
-  write('- Commercial Banker'),nl,
-  write('- Financial Controller'),nl,
-  write('- Internal & External Auditor'),nl,
-  write('- Management Consultant'),nl,
-  write('- Tax Consultant'),nl,
-  write('- Finance Analyst'),nl,
-  write('- Fund Manager'),nl,
-  write('- Financial Planner'),nl,
-  write('- Corporate Treasurer'))).
+  nl, write('Recommendation: Accounting '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Business Management
 degree(business_management) :-
-  subject(business, CF1,E),
+  subject(business, CF1, E),
   larger_than_CF(CF1), 
   calculate_cf([CF1], 100, CF),
   % Debug 
   write_combinedCF(CF1, 100, CF),
-  nl,
-  \+inserted(business_management),
-  assert(inserted(business_management)),
-  assert(describe(business_management):- (
-    nl,nl,
-  write('Recommendation: Business Management '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You are suitable for the degree of business management'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Chief Executive Officer'),nl,
-  write('- Business Consultant'),nl,
-  write('- Entrepreneur'),nl,
-  write('- General Manager'),nl,
-  write('- Strategic Planner'),nl,
-  write('- Marketing Manager'),nl,
-  write('- HR Manager'),nl,
-  write('- Operation / Project Manager'),nl,
-  write('- Researcher'),nl,
-  write('- Organisational Development Manager'),nl,
-  write('- Procurement Manager')
-  )).
+  nl, write('Recommendation: Business Management '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Performing Art
 degree(performing_art) :-
-  subject(art, CF1,E),
+  subject(art, CF1, E),
   larger_than_CF(CF1),  
   film_or_perform(perform),
   center_of_attention(CF2),
@@ -675,36 +387,13 @@ degree(performing_art) :-
   calculate_cf([CF1, CF2, CF3], 90, CF),
   % Debug 
   write_combinedCF(CF1, CF2, CF3, CF),
-  nl,
-  \+inserted(performing_art),
-  assert(inserted(performing_art)),
-  assert(describe(performing_art):- (
-    nl,nl,
-  write('Recommendation: Performing Art '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You like to become the center of attention and like to perform over film.\c
-  You are suitable for the degree of performing art.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Actor'),nl,
-  write('- Voice Over Talent'),nl,
-  write('- Director'),nl,
-  write('- Producer'),nl,
-  write('- Production Manager'),nl,
-  write('- Stage Manager'),nl,
-  write('- Cinematographer'),nl,
-  write('- Editor'),nl,
-  write('- Production Designer'),nl,
-  write('- Script Writer'),nl,
-  write('- Drama Teacher')
-  )).
+  nl, write('Recommendation: Performing Art '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Digital Film Production
 degree(digital_film_production) :-
-  subject(art, CF1,E),
+  subject(art, CF1, E),
   larger_than_CF(CF1),
   film_or_perform(film),
   film(CF2),
@@ -712,91 +401,36 @@ degree(digital_film_production) :-
   calculate_cf([CF1, CF2], 90, CF),
   % Debug 
   write_combinedCF(CF1, CF2, CF),
-  nl,
-  \+inserted(digital_film_production),
-  assert(inserted(digital_film_production)),
-  assert(describe(digital_film_production):- (
-    nl,nl,
-  write('Recommendation: Digital Film Production '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You like to film over perform.\c
-  You are suitable for the degree of digital film production.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Audio-Visual Producer'),nl,
-  write('- Transmedia Designer'),nl,
-  write('- Documentary Filmmaker'),nl,
-  write('- Creative Entrepreneur'),nl,
-  write('- Videographer'),nl,
-  write('- Director'),nl,
-  write('- Production Designer'),nl,
-  write('- Video Producer')
-  )).
+  nl, write('Recommendation: Digital Film Production '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Culinary Art
 degree(culinary_art) :- 
-  subject(hospitality, CF1,E),
+  subject(hospitality, CF1, E),
   larger_than_CF(CF1),
   cook(CF2),  
   larger_than_CF(CF2),
   calculate_cf([CF1, CF2], 100, CF),
   % Debug 
   write_combinedCF(CF1, CF2, CF),
-  nl,
-  \+inserted(culinary_art),
-  assert(inserted(culinary_art)),
-  assert(describe(culinary_art):- (
-    nl,nl,
-  write('Recommendation: Culinary Art '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You enjoy cooking.\c
-  You are suitable for the degree of culinary art.'),nl,
-  write(E),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Chef de Cuisine / Executive Chef'),nl,
-  write('- Banquet Manager'),nl,
-  write('- Food and Beverage Manager'),nl,
-  write('- In-flight Food Manager'),nl,
-  write('- Product Development Manager'),nl,
-  write('- Restaurant Owner / Entrepreneur'))).
+  nl, write('Recommendation: Culinary Art '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Hotel Management
 degree(hotel_management) :- 
-  subject(hospitality, CF1,E),  
+  subject(hospitality, CF1, E),  
   larger_than_CF(CF1),
   calculate_cf([CF1], 100, CF),
   % Debug 
   write_combinedCF(CF1, 100, CF),
-  nl,
-  \+inserted(hotel_management),
-  assert(inserted(hotel_management)),
-  assert(describe(business):- (
-    nl,nl,
-  write('Recommendation: Hotel Management '), 
-  write('(cf '),  
-  X = CF rdiv 50,
-  Y = X - 1,
-  format('~1f', [Y]), write(')'), nl,
-  write('You are suitable for the degree of hotel management.'),nl,
-  write(E)),nl,
-  write('The careers that suitable for you are:'),nl,
-  write('- Sales and Marketing Manager'),nl,
-  write('- Front Office Manager'),nl,
-  write('- Hotel Human Resource Manager'),nl,
-  write('- Rooms Division Manager'),nl,
-  write('- Purchasing Manager'),nl,
-  write('- Food & Beverage Manager')
-  ).
+  nl, write('Recommendation: Hotel Management '), 
+  write('(cf '), write(CF), write(')'), nl,
+  write(E).
 
 % Degree: Gap Year
 degree(gap_year) :-
-  \+inserted(_),
   nl, write('Recommendation: Gap Year '), 
   write('(cf '), write('Unknown'), write(')'), nl,
   write('Sorry. We cannot help you because you have a \c
@@ -814,7 +448,7 @@ larger_than_fifty(CF) :-
   CF>=50.
 
 larger_than_CF(CF):-
-  CF>=50.
+  CF>60.
 
 min_in_list([Min],Min). 
 min_in_list([H,K|T],M) :-
@@ -1185,21 +819,3 @@ ask_with_cf(Question, Answer, Choices) :-
   CF is Index * 20,
   asserta(progress(Question, CF)),
   CF = Answer.
-
-describe_all:-
-%Explain CF here
-    write('Term for CF'),nl,
-    write('Definitely not -1.0'),nl,
-    write('Almost certainly not -0.8'),nl,
-    write('Probably not -0.6'),nl,
-    write('Maybe not -0.4'),nl,
-    write('Unknown -0.2 to +0.2'),nl,
-    write('Maybe +0.4'),nl,
-    write('Probably +0.6'),nl,
-    write('Almost certainly +0.8'),nl,
-    write('Definitely +1.0'), nl, 
-    describe(_),
-    false.
-
-describe_all:-
-    true.
