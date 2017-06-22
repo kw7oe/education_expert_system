@@ -150,8 +150,11 @@ degree(electrical_engineering) :-
 degree(mechanical_engineering) :-
   subject(engineering),
   physics(yes).
+
+% Error, wont go into here
 degree(chemical_engineering) :-
   subject(engineering),
+  physics(no),
   chemistry(yes).
 
 % Science
